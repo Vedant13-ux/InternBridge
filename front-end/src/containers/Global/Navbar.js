@@ -12,8 +12,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import Button from "@material-ui/core/Button"
-// import Link from 
+import Button from "@material-ui/core/Button";
+// import Link from
 
 const useStyles = makeStyles((theme) => ({
   grow: {
