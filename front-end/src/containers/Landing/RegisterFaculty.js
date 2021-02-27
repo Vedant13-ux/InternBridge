@@ -29,12 +29,15 @@ const RegisterFaculty = () => {
   // styling
   const paperStyle = {
     padding: "30px 20px",
-    width: 320,
-    height: "70vh",
+    width: 340,
+    // height: "80vh",
     margin: "20px auto",
   };
+  const marginTop = {
+    marginTop: "2rem",
+  };
   const formControlStyle = {
-    paddingRight: "175px",
+    // paddingRight: "175px",
   };
   const headerStyle = { margin: 0 };
   const avatarStyle = { backgroundColor: "#1bbd7e" };
@@ -47,7 +50,7 @@ const RegisterFaculty = () => {
           </Avatar>
           <h2 style={headerStyle}>Sign Up</h2>
           <Typography variant="caption" gutterBottom>
-            Please fill this form to create an account !
+            Please fill this form to create an account.
           </Typography>
         </Grid>
         <form>
@@ -75,11 +78,13 @@ const RegisterFaculty = () => {
             label="Confirm Password"
             placeholder="Confirm your password"
           />
-          <FormControlLabel
-            control={<Checkbox name="checkedA" />}
-            label="I accept the terms and conditions."
-          />
-          <Button type="submit" variant="contained" color="primary">
+
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            style={marginTop}
+          >
             Sign up
           </Button>
         </form>
