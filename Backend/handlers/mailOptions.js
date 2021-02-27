@@ -1,12 +1,12 @@
 function mailOptions(req, process) {
-    return ({
-      from: 'kjsceintern@gmail.com',
-      to: req.body.email,
-      subject: 'KJSCE Intern - Verification',
-      text: `
+  return ({
+    from: 'kjsceintern@gmail.com',
+    to: req.body.email,
+    subject: 'KJSCE Intern - Verification',
+    text: `
             Hello, Thanks for regstering on our site. Please Click on the link bellow to verify your Account.
-            ${process.env.PROXY_URL}/verify-email/${req.body.emailToken}`,
-      html: `
+            http://localhost:3000/verify-email/${req.body.emailToken}`,
+    html: `
             <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
             <html>
             
@@ -464,7 +464,7 @@ function mailOptions(req, process) {
                                     <tr>
                                       <td valign="top" style="padding-bottom:1rem;border-collapse:collapse;" class="mainContainer">
                                         <div style="text-align:center;color:#505050;font-family:Arial;font-size:14px;line-height:150%;">
-                                          <h1 class="h1" style="color:#202020;display:block;font-family:Arial;font-size:24px;font-weight:bold;line-height:100%;margin-top:20px;margin-right:0;margin-bottom:20px;margin-left:0;text-align:center;">Hey ${req.body.fname}, Verify Your Email</h1>
+                                          <h1 class="h1" style="color:#202020;display:block;font-family:Arial;font-size:24px;font-weight:bold;line-height:100%;margin-top:20px;margin-right:0;margin-bottom:20px;margin-left:0;text-align:center;">Hey ${req.body.name.split(' ')[0]}, Verify Your Email</h1>
             
                                           <!-- <h2 class="h2">Heading 2</h2>
                                                                             <h3 class="h3">Heading 3</h3>
@@ -479,7 +479,7 @@ function mailOptions(req, process) {
                                           <tbody>
                                             <tr align="center">
                                               <td align="center" valign="middle" style="border-collapse:collapse;">
-                                                <a href="${process.env.PROXY_URL}/verify-email/${req.body.emailToken}" class="buttonText" href="#" target="_blank" style="color: #4A90E2;text-decoration: none;font-weight: normal;display: block;border: 2px solid #585858;padding: 10px 80px;font-family: Arial;">Verify</a>
+                                                <a href="http://localhost:3000/verify-email/${req.body.emailToken}" class="buttonText" href="#" target="_blank" style="color: #4A90E2;text-decoration: none;font-weight: normal;display: block;border: 2px solid #585858;padding: 10px 80px;font-family: Arial;">Verify</a>
                                               </td>
                                             </tr>
                                           </tbody>
@@ -530,7 +530,7 @@ function mailOptions(req, process) {
             
             </html>
          `
-    })
-  }
-  
-  module.exports = mailOptions;
+  })
+}
+
+module.exports = mailOptions;

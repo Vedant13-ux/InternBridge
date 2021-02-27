@@ -5,7 +5,6 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import RegisterStudents from "./RegisterStudents";
-import RegisterFaculty from "./RegisterFaculty";
 import Grid from "@material-ui/core/Grid";
 const Accounts = () => {
   const [value, setValue] = useState(0);
@@ -54,10 +53,10 @@ const Accounts = () => {
         </Tabs>
         <TabPanel value={value} index={0}>
           {/* <Login handleChange={handleChange} /> */}
-          <RegisterStudents />
+          <RegisterStudents role="Student" />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <RegisterFaculty />
+          <RegisterStudents role="Faculty" />
         </TabPanel>
       </Paper>
     </Grid>

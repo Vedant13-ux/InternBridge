@@ -21,13 +21,13 @@ class Emailverification extends Component {
 
             })
             .catch(async err => {
-                await this.setState({ status: 'Email Verification Failed. Relaod the page or try to signup again.' || err.message });
+                await this.setState({ status: 'Email Verification Failed. Reload the page or try to Signup again.' || err.message });
             })
     }
     render() {
         const content = this.state.status;
         return (
-            <div className="emailVerification container" >
+            <div className="emailVerification container" style={{textAlign:"center"}} >
                 <h1>{content}</h1>
             </div >
         )
