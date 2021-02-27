@@ -14,9 +14,12 @@ router.get('/verify-email/:token', async (req, res, next) => {
             user.emailToken = null;
             await user.save();
             let token = jwt.sign({
-                ...user._doc
+                email, _id, name, emailToken
             }, process.env.SECRET_KEY);
-            return res.status(200).send({ ...user._doc, token });
+
+            return res.status(200).json({
+                ...user._doc, token, password: ''
+            })
         }).catch((err) => {
             next(err);
         });
