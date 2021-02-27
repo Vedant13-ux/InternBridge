@@ -110,13 +110,6 @@ class Main extends React.Component {
           <Route exact path="/login" render={(props) => <Login {...props} />} />
           <Route
             exact
-            currentUser={currentUser}
-            path="/signup"
-            render={(props) => <Signup {...props} />}
-          />
-          <Route
-            exact
-            currentUser={currentUser}
             path="/profile/:id/:name"
             render={(props) => <Profile {...props} />}
           />
