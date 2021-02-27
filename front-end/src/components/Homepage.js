@@ -17,12 +17,22 @@ class Homepage extends Component {
       this.setState({searchfield:ne.target.value})
     }
     this.searchclick=()=>{
+      if (this.state.searchfield===''){
+        apiCall('get','/internship/getAll')
+        .then((d)=>{
+          this.setState({internship:d})
+          console.log(d)
+        })
+        .catch((e)=>console.log(e))
+      }
+      else{
       apiCall('get','/internship/search/title/'+this.state.searchfield)
       .then((d)=>{
         this.setState({internship:d})
         console.log(d)
       })
       .catch((e)=>console.log(e))
+    }
       } 
   }
   componentDidMount(){
@@ -42,9 +52,9 @@ class Homepage extends Component {
         <Navbar onch={this.changesf} dient={this.searchclick}></Navbar>
         <div className="homegrid">
           <div>
-          <IconButton aria-label="delete">
-  <DeleteIcon />
-</IconButton>
+          {/* <IconButton aria-label="delete">
+            <DeleteIcon />
+          </IconButton> */}
           </div>
          <div className="row">
             {this.state.internship.map((d, i) => {
