@@ -19,6 +19,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Paper from "@material-ui/core/Paper";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 class Profile extends Component {
   constructor(props) {
@@ -47,6 +48,11 @@ class Profile extends Component {
     };
     this.handleSaveBio = (e) => {
       this.setState({ bioEditable: !this.state.bioEditable });
+    };
+
+    //delete certificate
+    this.deleteCert = (index) => {
+      console.log(index);
     };
   }
   componentDidMount() {
@@ -182,6 +188,42 @@ class Profile extends Component {
                     <EditIcon />
                   </Fab>
                 </div>
+                <div class="ui stacked segments">
+                  {this.state.user.experiences.map((e, i) => {
+                    return (
+                      <div class="ui segment">
+                        <div className="experience-ele">
+                          <h4>{e.title}</h4>
+                          <sub>{e.type}</sub>
+                          {this.props.owner && (
+                            <span
+                              className="deleteproj"
+                              onClick={() => this.handleshow2(e)}
+                            >
+                              <i className="fa fa-edit"></i>
+                            </span>
+                          )}
+                          <p>
+                            <span style={{ display: "block" }}>
+                              {e.company}
+                            </span>
+                            {new Date(e.startdate).toDateString() +
+                              "-" +
+                              (e.enddate === null
+                                ? "Present"
+                                : new Date(e.enddate).toDateString())}
+                            <br></br>
+                            <h6>{e.description}</h6>
+                          </p>
+                          {/* <hr className="short br-lighter"></hr> */}
+                        </div>
+                      </div>
+                    );
+                  })}
+                  {this.state.user.experiences.length === 0 && (
+                    <NoExperience></NoExperience>
+                  )}
+                </div>
               </Typography>
               <div style={{ padding: "20px" }}>
                 {this.state.user.experience && (
@@ -207,6 +249,96 @@ class Profile extends Component {
               </div>
             </div>
 
+            <div className="panel" id="certificates">
+              <div className="panel-heading">
+                <span className="panel-icon">
+                  <i className="fa fa-pencil" />
+                </span>
+
+                <Typography variant="h5" component="h4">
+                  <div className="headings">
+                    Certificates
+                    <Fab
+                      size="small"
+                      color="primary"
+                      aria-label="add"
+                      style={{ marginLeft: "5px" }}
+                    >
+                      <EditIcon />
+                    </Fab>
+                  </div>
+                </Typography>
+                {this.props.isowner && (
+                  <span className="add" onClick={this.handleShow2}>
+                    <i className="far fa-plus-square"></i>
+                  </span>
+                )}
+              </div>
+              <div className="panel-body pb5" style={{ marginTop: "1rem" }}>
+                <div class="ui stacked segments">
+                  {this.state.user.certificates.map((s, i) => (
+                    <div class="ui segment">
+                      <h4>
+                        {s.title}
+
+                        {this.props.isowner && (
+                          <span
+                            className="deletecert"
+                            onClick={() => this.deletecert(s._id)}
+                          >
+                            <i className="fa fa-trash"></i>
+                          </span>
+                        )}
+                      </h4>
+                      <p>
+                        <img
+                          style={{
+                            paddingRight: "0.5rem",
+                          }}
+                          className="providerimg mr-2"
+                          src={
+                            "https://www.google.com/s2/favicons?sz=20&domain_url=" +
+                            s.link
+                              .replace("http://", "")
+                              .replace("https://", "")
+                              .split(/[/?#]/)[0]
+                          }
+                          alt="logo"
+                        ></img>
+                        {s.provider}
+                        <br></br>
+                        <div
+                          className="issued"
+                          style={{ paddingTop: "0.5rem" }}
+                        >
+                          Issued: {new Date(s.date).toDateString()}
+                        </div>
+
+                        <div
+                          className="credentials"
+                          style={{ paddingTop: "0.5rem" }}
+                        >
+                          <a
+                            href={s.link}
+                            target="_blank"
+                            rel="noreferrer"
+                            style={{ color: "#3F51B5", textDecoration: "none" }}
+                          >
+                            see creditential
+                          </a>
+                        </div>
+                        <div className="delIcon" style={{ float: "right" }}>
+                          <DeleteIcon
+                            color={"primary"}
+                            onClick={() => this.deleteCert(i)}
+                          />
+                        </div>
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
             <div className="contactInfo">
               <Typography variant="h5" component="h4">
                 <div className="headings">
