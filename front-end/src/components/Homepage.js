@@ -36,8 +36,16 @@ class Homepage extends Component {
   render() {
     return (
       <div>
+        <link 
+      rel="stylesheet" 
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap-grid.min.css" />
         <Navbar onch={this.changesf} dient={this.searchclick}></Navbar>
         <div className="homegrid">
+          <div>
+          <IconButton aria-label="delete">
+  <DeleteIcon />
+</IconButton>
+          </div>
          <div className="row">
             {this.state.internship.map((d, i) => {
             return (
