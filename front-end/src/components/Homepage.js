@@ -14,7 +14,7 @@ class Homepage extends Component {
     };
   }
   componentDidMount(){
-    apiCall('get','internship/searchinternships')
+    apiCall('get','/internship/getAll')
     .then((d)=>{
       this.setState({internship:d})
       console.log(d)
@@ -30,7 +30,7 @@ class Homepage extends Component {
             {this.state.internship.map((d, i) => {
             return (
                 <Grid item xs={3}>
-                  <Internshipcard></Internshipcard>
+                  <Internshipcard key={i} data={d}></Internshipcard>
                 </Grid>
               );
             })}

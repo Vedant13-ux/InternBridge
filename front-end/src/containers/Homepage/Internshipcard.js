@@ -11,6 +11,7 @@ import { red } from '@material-ui/core/colors';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,14 +36,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard() {
+export default function RecipeReviewCard(props) {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar} src="https://pht.qoo-static.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO=w300">
+          <Avatar aria-label="recipe" className={classes.avatar} src={props.data.faculty.photo}>
             R
           </Avatar>
         }
@@ -51,22 +52,23 @@ export default function RecipeReviewCard() {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Among us"
-        subheader="September 14, 2016"
+        title={props.data.faculty.name}
+        subheader={props.data.posted_on}
       />
       <CardContent>
+        <h4>{props.data.title}</h4>
         <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook together with your
-          guests. Add 1 cup of frozen peas along with the mussels, if you like.
+         {props.data.description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="add to bookmark">
           <BookmarkIcon />
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
+        <Link to={"/insternship/"+props.data._id}>more info</Link>
       </CardActions>
     </Card>
   );
