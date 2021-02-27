@@ -25,7 +25,6 @@ const LandingPage = () => {
             crossorigin="anonymous"
           />
           <link rel="stylesheet" href="/landing/css/font-awesome.min.css" />
-          {/* <link rel="stylesheet" href="/css/aos.css" /> */}
           <link rel="stylesheet" href="/landing/css/owl.carousel.min.css" />
           <link
             rel="stylesheet"

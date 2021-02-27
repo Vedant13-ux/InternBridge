@@ -30,7 +30,7 @@ const RegisterFaculty = () => {
   const paperStyle = {
     padding: "30px 20px",
     width: 340,
-    height: "70vh",
+    // height: "80vh",
     margin: "20px auto",
   };
   const marginTop = {
