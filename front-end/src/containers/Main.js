@@ -4,6 +4,7 @@ import Homepage from '../components/Homepage'
 import Landing from '../components/Landing';
 import Login from '../containers/Landing/Login'
 import Signup from '../containers/Landing/Signup'
+import Bookmark from '../components/Bookmark'
 // import NotFound from '../images/NotFound'
 
 class Main extends React.Component {
@@ -43,9 +44,9 @@ class Main extends React.Component {
                 <Switch>
                     <Route exact path="/" render={props => <Landing {...props} />} />
                     <Route exact path="/home" render={props => <Homepage {...props} />} />
+                    <Route exact path="/bookmark" render={props => <Bookmark {...props} />} />
                     <Route exact path="/login" render={props => <Login {...props} />} />
                     <Route exact path="/signup" render={props => <Signup {...props} />} />
-
                     <Route path="*" render={props => <div>not found</div>} />
                 </Switch>
             </div>
