@@ -15,7 +15,10 @@ code {
 .nolink{
   color:white;
 }
-
+/************************* Homepage *******************/
+.homegrid{
+  margin: 20px;
+}
 /************************* Profile *******************/
 #profile .jumbo{
   width: 100%;
