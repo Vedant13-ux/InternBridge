@@ -23,6 +23,8 @@ app.use(cors());
 require('./models/index');
 
 
+// Seed database
+// require('./seed')();
 
 // Routes
 const authRoutes = require('./routes/auth.js');

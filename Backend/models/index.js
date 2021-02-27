@@ -22,3 +22,4 @@ mongoose
 
 module.exports.User = require('./user');
 module.exports.Internship = require('./internship');
+module.exports.Application = require('./internship')
