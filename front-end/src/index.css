@@ -16,6 +16,9 @@ code {
 .nolink{
   color:white;
 }
+.nolink {
+  text-decoration: none;
+}
 /************************* Homepage *******************/
 .homegrid{
   margin: 20px;
@@ -94,9 +97,8 @@ padding: 10px;
 
 #internshipdetail{
   padding: 2%;
-  padding-right: 2%;
-  padding-left: 2%;
-  margin-top: 53px;
+  padding-right: 5%;
+  padding-left: 5%;
   min-height: 800px;
 }
 .avatar-pro{
