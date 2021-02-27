@@ -15,6 +15,7 @@ import {
   setAuthorizationHeader,
   authUser,
   setCurrentUser,
+  loginUser
 } from "../store/actions/auth";
 import LandingPage from "./Landing/landing";
 import EmailVerificaton from '../components/EmailVerification'
@@ -107,7 +108,7 @@ class Main extends React.Component {
             path="/register"
             render={(props) => <Register {...props} />}
           />
-          <Route exact path="/login" render={(props) => <Login {...props} />} />
+          <Route exact path="/login" render={(props) => <Login loginUser={this.props.loginUser} {...props} />} />
           <Route
             exact
             path="/profile/:id/:name"
@@ -128,7 +129,7 @@ function mapStateToProps(state) {
 }
 
 export default withRouter(
-  connect(mapStateToProps, { authUser, setCurrentUser, updateRefresh, logout })(
+  connect(mapStateToProps, { authUser, setCurrentUser, updateRefresh, logout, loginUser })(
     Main
   )
 );

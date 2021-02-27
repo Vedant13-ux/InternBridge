@@ -133,7 +133,6 @@ class RegisterStudents extends React.Component {
                   required
                   name="year"
                 >
-
                   <MenuItem value={"FY"}>FY</MenuItem>
                   <MenuItem value={"SY"}>SY</MenuItem>
                   <MenuItem value={"TY"}>TY</MenuItem>
