@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Grid,
   Paper,
@@ -39,13 +39,26 @@ const RegisterStudents = () => {
   // styling
   const paperStyle = {
     padding: "30px 20px",
-    width: 320,
+    width: 340,
     height: "70vh",
     margin: "20px auto",
   };
 
+  const marginTop = {
+    marginTop: "2rem",
+  };
   const headerStyle = { margin: 0 };
   const avatarStyle = { backgroundColor: "#1bbd7e" };
+
+  // states
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // function handleSubmit(event) {
+  //   event.preventDefault();
+  //   console.log("Email:", email, "Password: ", password);
+  //   // You should see email and password in console.
+  //   // ..code to submit form to backend here...
+  // }
   return (
     <Grid>
       <Paper elevation={20} style={paperStyle}>
@@ -59,8 +72,18 @@ const RegisterStudents = () => {
           </Typography>
         </Grid>
         <form>
-          <TextField fullWidth label="Name" placeholder="Enter your name" />
-          <TextField fullWidth label="Email" placeholder="Enter your email" />
+          <TextField
+            fullWidth
+            label="Name"
+            name="name"
+            placeholder="Enter your name"
+          />
+          <TextField
+            fullWidth
+            label="Email"
+            name="email"
+            placeholder="Enter your email"
+          />
 
           <TextField
             fullWidth
@@ -99,8 +122,10 @@ const RegisterStudents = () => {
           />
           <FormControlLabel
             control={<Checkbox name="checkedA" />}
+            style={marginTop}
             label="I accept the terms and conditions."
           />
+
           <Button type="submit" variant="contained" color="primary">
             Sign up
           </Button>

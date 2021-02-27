@@ -29,9 +29,12 @@ const RegisterFaculty = () => {
   // styling
   const paperStyle = {
     padding: "30px 20px",
-    width: 320,
+    width: 340,
     height: "70vh",
     margin: "20px auto",
+  };
+  const marginTop = {
+    marginTop: "2rem",
   };
   const formControlStyle = {
     paddingRight: "175px",
@@ -76,6 +79,7 @@ const RegisterFaculty = () => {
             placeholder="Confirm your password"
           />
           <FormControlLabel
+            style={marginTop}
             control={<Checkbox name="checkedA" />}
             label="I accept the terms and conditions."
           />
