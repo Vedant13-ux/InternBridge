@@ -3,7 +3,6 @@ import { Switch, Route, withRouter } from "react-router-dom";
 import Homepage from "../components/Homepage";
 import Landing from "../components/Landing";
 import Login from "../containers/Landing/Login";
-import Signup from "./Landing/RegisterStudents";
 import Register from "./Landing/RegisterMain";
 import Bookmark from "../components/Bookmark";
 // import NotFound from '../images/NotFound'
@@ -18,6 +17,7 @@ import {
   setCurrentUser,
 } from "../store/actions/auth";
 import LandingPage from "./Landing/landing";
+import EmailVerificaton from '../components/EmailVerification'
 
 class Main extends React.Component {
   // async componentWillMount() {
@@ -113,6 +113,7 @@ class Main extends React.Component {
             path="/profile/:id/:name"
             render={(props) => <Profile {...props} />}
           />
+          <Route exact path="/verify-email/:token" render={props => <EmailVerificaton {...props} authUser={this.props.authUser} />} />
           <Route path="*" render={(props) => <div>not found</div>} />
         </Switch>
       </div>
