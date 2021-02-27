@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Grid,
   Paper,
@@ -22,29 +22,30 @@ class RegisterStudents extends React.Component {
       name: "",
       email: "",
       phoneNumber: "",
-      branch: "",
+      dept: "",
       password: "",
       year: "",
       confirm: "",
-      role: "Student",
+      role: this.props.role,
       error: "",
-      success: false,
+      success: "",
+      disabled: false
     };
     this.handleChange = (e) => {
       return this.setState({ [e.target.name]: e.target.value });
     };
     this.handleSubmit = (e) => {
       e.preventDefault();
-      const { name, email, phoneNumber, password, year, role } = this.state;
-      const data = { name, email, phoneNumber, password, year, role };
+      const { name, email, phoneNumber, password, year, role, dept } = this.state;
+      const data = { name, email, phoneNumber, password, year, role, dept };
       apiCallAuth("post", "/signup", data)
         .then(async (response) => {
           console.log(response);
-          await this.setState({ success: true });
+          return await this.setState({ success: true, disabled: true });
         })
         .catch((err) => {
           console.log(err);
-          return this.setState({ error: err.message });
+          return this.setState({ error: err.response.data.error.message });
         });
     };
   }
@@ -73,6 +74,7 @@ class RegisterStudents extends React.Component {
           <form onSubmit={this.handleSubmit}>
             <TextField
               fullWidth
+              disabled={this.state.disabled}
               label="Name"
               name="name"
               placeholder="Enter your name"
@@ -80,6 +82,7 @@ class RegisterStudents extends React.Component {
               required
             />
             <TextField
+              disabled={this.state.disabled}
               fullWidth
               label="Email"
               name="email"
@@ -88,48 +91,58 @@ class RegisterStudents extends React.Component {
               onChange={this.handleChange}
               required
             />
-
-            <TextField
-              fullWidth
-              label="Phone Number"
-              name="phoneNumber"
-              placeholder="Enter your phone number"
-              onChange={this.handleChange}
-              required
-            />
+            {this.props.role === "Student" &&
+              <TextField
+                fullWidth
+                disabled={this.state.disabled}
+                label="Phone Number"
+                name="phoneNumber"
+                placeholder="Enter your phone number"
+                onChange={this.handleChange}
+                required
+              />
+            }
 
             <FormControl style={{ margin: "3px", minWidth: "120px" }}>
-              <InputLabel htmlFor="grouped-select">Branch</InputLabel>
+              <InputLabel htmlFor="grouped-select">Department</InputLabel>
               <Select
+                disabled={this.state.disabled}
                 defaultValue=""
                 id="grouped-select"
                 onChange={this.handleChange}
                 required
-                name="branch"
+                name="dept"
               >
                 <MenuItem value={"CS"}>CS</MenuItem>
                 <MenuItem value={"IT"}>IT</MenuItem>
                 <MenuItem value={"Extc"}>Extc</MenuItem>
                 <MenuItem value={"Mech"}>Mech</MenuItem>
                 <MenuItem value={"Etrx"}>Etrx</MenuItem>
+                <MenuItem value={"Other"}>Etrx</MenuItem>
+
               </Select>
             </FormControl>
-            <FormControl style={{ margin: "3px", minWidth: "150px" }}>
-              <InputLabel htmlFor="grouped-select">Year</InputLabel>
-              <Select
-                defaultValue=""
-                id="grouped-select"
-                onChange={this.handleChange}
-                required
-                name="year"
-              >
-                <MenuItem value={"FY"}>FY</MenuItem>
-                <MenuItem value={"SY"}>SY</MenuItem>
-                <MenuItem value={"TY"}>TY</MenuItem>
-                <MenuItem value={"LY"}>LY</MenuItem>
-              </Select>
-            </FormControl>
+            {this.props.role === "Student" &&
+              <FormControl style={{ margin: "3px", minWidth: "150px" }}>
+                <InputLabel htmlFor="grouped-select">Year</InputLabel>
+                <Select
+                  disabled={this.state.disabled}
+                  defaultValue=""
+                  id="grouped-select"
+                  onChange={this.handleChange}
+                  required
+                  name="year"
+                >
+
+                  <MenuItem value={"FY"}>FY</MenuItem>
+                  <MenuItem value={"SY"}>SY</MenuItem>
+                  <MenuItem value={"TY"}>TY</MenuItem>
+                  <MenuItem value={"LY"}>LY</MenuItem>
+                </Select>
+              </FormControl>
+            }
             <TextField
+              disabled={this.state.disabled}
               name="password"
               required
               fullWidth
@@ -139,6 +152,7 @@ class RegisterStudents extends React.Component {
               type="password"
             />
             <TextField
+              disabled={this.state.disabled}
               fullWidth
               label="Confirm Password"
               placeholder="Confirm your password"
@@ -160,7 +174,7 @@ class RegisterStudents extends React.Component {
           )}
           {this.state.success && (
             <Alert severity="success">
-              Please click on the link sent to you on your Email.{" "}
+              Please click on the link sent to you on your Email.
             </Alert>
           )}
         </Paper>

@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
-import { authUser } from '../../store/actions/auth'
 
 
 class Emailverification extends Component {
@@ -23,24 +21,18 @@ class Emailverification extends Component {
 
             })
             .catch(async err => {
-                await this.setState({ status: 'Email Verification Failed. Relaod the page or try to signup again.' || err.message });
+                await this.setState({ status: 'Email Verification Failed. Reload the page or try to Signup again.' || err.message });
             })
     }
     render() {
         const content = this.state.status;
         return (
-            <div className="emailVerification container" >
+            <div className="emailVerification container" style={{textAlign:"center"}} >
                 <h1>{content}</h1>
             </div >
         )
 
     }
 }
-function mapStateToProps(state) {
-    return {
-        currentUser: state.currentUser
-    }
-}
-
-export default connect(mapStateToProps, { authUser })(Emailverification);
+export default Emailverification;
 

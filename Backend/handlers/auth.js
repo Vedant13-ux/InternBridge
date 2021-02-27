@@ -23,6 +23,7 @@ exports.signup = async function (req, res, next) {
             console.log('Message Sent : %s', info.messageId);
             console.log('Preview URL : %s', info.getTestMessageURL(info));
         });
+        res.send("Signup Succeess")
 
     } catch (err) {
         if (err.code === 11000) {
