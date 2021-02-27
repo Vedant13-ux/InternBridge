@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import Internshipcard from '../containers/Homepage/Internshipcard'
 import {apiCall} from '../api/api'
 import IconButton from "@material-ui/core/IconButton";
-import 
+// import 
 
 class Homepage extends Component {
   constructor(props) {
