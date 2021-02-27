@@ -38,15 +38,15 @@ class Homepage extends Component {
       <div>
         <Navbar onch={this.changesf} dient={this.searchclick}></Navbar>
         <div className="homegrid">
-          <Grid container spacing={3}>
+         <div className="row">
             {this.state.internship.map((d, i) => {
             return (
-                <Grid item xs={3}>
+              <div className="col-xl-3 col-lg-4 col-sm-6">
                   <Internshipcard key={i} data={d}></Internshipcard>
-                </Grid>
+                </div>
               );
             })}
-          </Grid>
+          </div>
         </div>
       </div>
     );

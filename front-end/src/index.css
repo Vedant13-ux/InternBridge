@@ -17,6 +17,9 @@ code {
   color:white;
   text-decoration: none;
 }
+.nolink:hover{
+  color:white;
+}
 .nopadmar *{
   padding: 0px;
   margin: 0px;
@@ -24,6 +27,9 @@ code {
 /************************* Homepage *******************/
 .homegrid{
   margin: 20px;
+}
+.row .col-xl-3{
+  margin-bottom: 20px;
 }
 /************************* Profile *******************/
 #profile .jumbo{
@@ -181,39 +187,6 @@ padding: 10px;
 }
 #internshipdetail .closedpack p{
   margin:0px;
-}
-#internshipdetail .recomm{
-   min-height: 100px;
-  max-height: 600px;
-}
-#internshipdetail .recommendations .template{
-   margin: 10px;
-}
-#internshipdetail .recommendations .template .top{
-   display: flex !important;
-   align-items: center !important;
-   padding: 0 !important;
-}
-#internshipdetail .recommendations .template .top .author{
-   font-size: 16px;
-   padding: 0px;
-   margin:0px;
-}
-#internshipdetail .recommendations .template .title{
-   margin: 0px;
-   margin-bottom: 4px;
-   padding: 2px 6px;
-   font-size: 14px;
-}
-#internshipdetail .recommendations .template .closedpack{
-   font-size: 14px;
-   padding-bottom: 5px;
-}
-#internshipdetail .recommendations .template{
-  color: rgba(0, 0, 0, 0.788);
-}
-#internshipdetail .recommendations .scroll{
-  overflow-y: auto;
 }
 #internshipdetail .applynow .btn{
    background-color: #FFCA3D;
