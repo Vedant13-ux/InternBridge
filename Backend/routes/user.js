@@ -27,7 +27,7 @@ function escapeRegex(text) {
 }
 
 // Get user by User Id
-router.get('/user/:id', (req, res, next) => {
+router.get('/profile/:id/:name', (req, res, next) => {
     db.User.findById(req.params.id, '-password').populate('applications', 'title duration _id description category recruited').populate('certificates').populate('experiences').populate('projects').populate('achievements').populate({ path: "internshipsOffered", select: 'title duration _id category  description applicants', populate: { path: 'applicants', select: 'name email photo' } }).populate({ path: "internshipsOffered", populate: { path: 'recruited', select: 'name email photo' } }).exec()
         .then((user) => {
             if (user) {

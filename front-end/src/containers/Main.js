@@ -7,6 +7,7 @@ import Signup from "./Landing/RegisterStudents";
 import Register from "./Landing/RegisterMain";
 import Bookmark from "../components/Bookmark";
 // import NotFound from '../images/NotFound'
+import Profile from '../components/Profile'
 
 class Main extends React.Component {
   // async componentWillMount() {
@@ -65,6 +66,11 @@ class Main extends React.Component {
             exact
             path="/signup"
             render={(props) => <Signup {...props} />}
+          />
+          <Route
+            exact
+            path="/profile/:id/:name"
+            render={(props) => <Profile {...props} />}
           />
           <Route path="*" render={(props) => <div>not found</div>} />
         </Switch>

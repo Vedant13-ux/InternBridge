@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { apiCall } from "../service/api";
+import { apiCall } from "../api/api";
 import Navbar from "../containers/Global/Navbar";
 import Fab from "@material-ui/core/Fab";
 import StarIcon from "@material-ui/icons/Star";
@@ -16,6 +16,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import Paper from "@material-ui/core/Paper";
 
 class Profile extends Component {
     constructor(props) {
@@ -23,7 +24,8 @@ class Profile extends Component {
         this.state = {
             user: {},
             show1: false,
-            lookingforjob: ''
+            lookingforjob: '',
+            owner: true
         };
         this.start = true;
         this.edit = (a, b) => {
@@ -32,19 +34,12 @@ class Profile extends Component {
         this.handleClose1 = (e) => {
             this.setState({ show1: !this.state.show1 });
         };
-        this.handlesublfj = () => {
-            console.log('aya')
-            apiCall('put', '/users/profile/update/lookingforjob', { userId: this.state.user._id, lookingForJob: this.state.lookingforjob }).then(
-                this.setState({ lookingForJob: this.state.lookingforjob, show1: false })
-
-            )
-        }
         // console.log('')
     }
     componentDidMount() {
         apiCall(
             "get",
-            `/users/profile/${this.props.match.params.id}/${this.props.match.params.name}`,
+            `/user/profile/${this.props.match.params.id}/${this.props.match.params.name}`,
             ""
         )
             .then(async (user) => {
@@ -75,8 +70,9 @@ class Profile extends Component {
                             <Fab
                                 color="secondary"
                                 aria-label="add"
-                                className="body"
                                 style={{ marginLeft: "10px" }}
+                                className="uibtn"
+
                             >
                                 <StarIcon />
                             </Fab>
@@ -84,32 +80,33 @@ class Profile extends Component {
                     </div>
 
                     <div class="details">
-                        <h3>Leonardo DiCaprio</h3>
-                        <p>Actor / Environmentalist</p>
+                        <h3>{this.state.user.name}</h3>
+                        <p>{this.state.user.dept} - {this.state.user.year}</p>
                     </div>
 
                     <div className="container">
                         <div className="lookForJob">
                             <Typography variant="h5" component="h4">
                                 <div className="headings">
-                                    Looking For a Job
-                  <Fab
+                                    Bio
+                                    <Fab
                                         size="small"
                                         color="secondary"
                                         aria-label="add"
                                         style={{ marginLeft: "5px" }}
                                         onClick={this.handleClose1}
+                                        className="uibtn"
                                     >
                                         <EditIcon />
                                     </Fab>
                                 </div>
                             </Typography>
-                            <div className="paper">
+                            <Paper className="paper">
                                 Lorem iossdkjas dkajshd kasjdha kshdasd Lorem iossdkjas dkajshd
                                 kasjdha kshdasd Lorem iossdkjas dkajshd kasjdha kshdasd Lorem
                                 iossdkjas dkajshd kasjdha kshdasd Lorem iossdkjas dkajshd
                                 kasjdha kshdasd
-              </div>
+                            </Paper>
 
                             <Dialog
                                 open={this.state.show1}
@@ -119,7 +116,7 @@ class Profile extends Component {
                             >
                                 <DialogTitle id="alert-dialog-title">
                                     Edit Looking for a Job
-                </DialogTitle>
+                                </DialogTitle>
                                 <DialogContent>
                                     <DialogContentText id="alert-dialog-description">
                                         <input type="text" onClick={(e) => this.edit('lookingforjob', e.target.value)}></input>
@@ -128,11 +125,10 @@ class Profile extends Component {
                                 <DialogActions>
                                     <Button onClick={this.handlesublfj} color="primary">
                                         Submit
-                  </Button>
+                                    </Button>
                                 </DialogActions>
                             </Dialog>
                         </div>
-                        <hr></hr>
                         <div className="experiences">
                             <Typography variant="h5" component="h4">
                                 <div className="headings">
