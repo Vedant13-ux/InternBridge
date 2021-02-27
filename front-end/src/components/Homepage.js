@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import Navbar from "../containers/Global/Navbar";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -9,6 +9,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ListIcon from "@material-ui/icons/List";
 import AddIcon from "@material-ui/icons/Add";
 import Filter from "../containers/Homepage/filterinternship";
+import InternshipCreate from '../containers/Homepage/addinternship'
 
 class Homepage extends Component {
   constructor(props) {
@@ -61,10 +62,7 @@ class Homepage extends Component {
         <div className="homegrid">
           <div style={{ marginBottom: "10px" }}>
             <Filter></Filter>
-
-            <IconButton aria-label="delete">
-              <AddIcon color="primary" />
-            </IconButton>
+            <InternshipCreate></InternshipCreate>
           </div>
           <div className="row">
             {this.state.internship.map((d, i) => {
