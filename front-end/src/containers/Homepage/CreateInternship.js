@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Multiselect } from "multiselect-react-dropdown";
-import { apiCall } from "../../services/api";
+import { apiCall } from "../../api/api";
 import { connect } from "react-redux";
 // import {
 //   internshipCreate,
@@ -47,13 +47,13 @@ class Intershipform extends Component {
         description: "",
         perks: "",
         whoCanApply: "",
-        faculty: {
-          _id: this.props.currentUser.user._id,
-          fname: this.props.currentUser.user.fname,
-          lname: this.props.currentUser.user.lname,
-          photo: this.props.currentUser.user.photo,
-          email: this.props.currentUser.user.email,
-        },
+        // faculty: {
+        //   _id: this.props.currentUser.user._id,
+        //   fname: this.props.currentUser.user.fname,
+        //   lname: this.props.currentUser.user.lname,
+        //   photo: this.props.currentUser.user.photo,
+        //   email: this.props.currentUser.user.email,
+        // },
         skillData: [
           { text: "Python" },
           { text: "Node.Js" },
@@ -347,7 +347,4 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-  internshipCreate,
-  internshipDelete,
-  internshipedit,
 })(Intershipform);

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { apiCall } from "../api/api";
+import ExperienceForm from "./ExperienceForm";
 import Navbar from "../containers/Global/Navbar";
 import Fab from "@material-ui/core/Fab";
 import StarIcon from "@material-ui/icons/Star";
@@ -19,6 +20,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Paper from "@material-ui/core/Paper";
+import DeleteIcon from "@material-ui/icons/Delete";
+import AddIcon from "@material-ui/icons/Add";
 
 class Profile extends Component {
   constructor(props) {
@@ -26,6 +29,8 @@ class Profile extends Component {
     this.state = {
       user: {},
       show1: false,
+      show2: false,
+      show3: false,
       lookingforjob: "",
       owner: true,
       bioEditable: false,
@@ -47,6 +52,22 @@ class Profile extends Component {
     };
     this.handleSaveBio = (e) => {
       this.setState({ bioEditable: !this.state.bioEditable });
+    };
+
+    this.deleteCert = (index) => {
+      console.log(index);
+    };
+
+    //handle experience
+    this.handleClose2 = () => {
+      this.setState({ show2: !this.state.show2 });
+      //   this.bio.current.style.border = "4px solid black";
+    };
+
+    //delete certificate
+    this.handleClose3 = () => {
+      this.setState({ show3: !this.state.show3 });
+      //   this.bio.current.style.border = "4px solid black";
     };
   }
   componentDidMount() {
@@ -143,7 +164,7 @@ class Profile extends Component {
                 kasjdha kshdasd
               </Paper>
 
-              <Dialog
+              {/* <Dialog
                 open={this.state.show1}
                 onClose={this.handleClose1}
                 aria-labelledby="alert-dialog-title"
@@ -167,6 +188,25 @@ class Profile extends Component {
                     Submit
                   </Button>
                 </DialogActions>
+              </Dialog> */}
+
+              <Dialog
+                open={this.state.show2}
+                onClose={this.handleClose2}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                <DialogTitle id="alert-dialog-title">
+                  Add Experience
+                </DialogTitle>
+                <DialogContent>
+                  <ExperienceForm />
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={this.handlesublfj} color="primary">
+                    Submit
+                  </Button>
+                </DialogActions>
               </Dialog>
             </div>
             <div className="experiences">
@@ -176,11 +216,48 @@ class Profile extends Component {
                   <Fab
                     size="small"
                     color="primary"
+                    onClick={this.handleClose2}
                     aria-label="add"
                     style={{ marginLeft: "5px" }}
                   >
-                    <EditIcon />
+                    <AddIcon />
                   </Fab>
+                </div>
+                <div class="ui stacked segments">
+                  {this.state.user.experiences.map((e, i) => {
+                    return (
+                      <div class="ui segment">
+                        <div className="experience-ele">
+                          <h4>{e.title}</h4>
+                          <sub>{e.type}</sub>
+                          {this.props.owner && (
+                            <span
+                              className="deleteproj"
+                              onClick={() => this.handleshow2(e)}
+                            >
+                              <i className="fa fa-edit"></i>
+                            </span>
+                          )}
+                          <p>
+                            <span style={{ display: "block" }}>
+                              {e.company}
+                            </span>
+                            {new Date(e.startdate).toDateString() +
+                              "-" +
+                              (e.enddate === null
+                                ? "Present"
+                                : new Date(e.enddate).toDateString())}
+                            <br></br>
+                            <h6>{e.description}</h6>
+                          </p>
+                          {/* <hr className="short br-lighter"></hr> */}
+                        </div>
+                      </div>
+                    );
+                  })}
+                  {/* {this.state.user.experiences.length === 0 && (
+                    <NoExperience></NoExperience>
+                  )} */}
                 </div>
               </Typography>
               <div style={{ padding: "20px" }}>
@@ -207,6 +284,171 @@ class Profile extends Component {
               </div>
             </div>
 
+            {/* certificates */}
+
+            <div className="panel" id="certificates">
+              <div className="panel-heading">
+                <span className="panel-icon">
+                  <i className="fa fa-pencil" />
+                </span>
+
+                <Typography variant="h5" component="h4">
+                  <div className="headings">
+                    Certificates
+                    <Fab
+                      size="small"
+                      color="primary"
+                      aria-label="add"
+                      onClick={this.handleClose3}
+                      style={{ marginLeft: "5px" }}
+                    >
+                      <AddIcon />
+                    </Fab>
+                  </div>
+                </Typography>
+                {this.props.isowner && (
+                  <span className="add" onClick={this.handleShow2}>
+                    <i className="far fa-plus-square"></i>
+                  </span>
+                )}
+              </div>
+              <div className="panel-body pb5" style={{ marginTop: "1rem" }}>
+                <div class="ui stacked segments">
+                  {this.state.user.certificates.map((s, i) => (
+                    <div class="ui segment">
+                      <h4 style={{ margin: "0" }}>
+                        {s.title}
+
+                        {this.props.isowner && (
+                          <span
+                            className="deletecert"
+                            onClick={() => this.deletecert(s._id)}
+                          >
+                            <i className="fa fa-trash"></i>
+                          </span>
+                        )}
+                      </h4>
+                      <p>
+                        <img
+                          style={{
+                            paddingRight: "0.5rem",
+                          }}
+                          className="providerimg mr-2"
+                          src={
+                            "https://www.google.com/s2/favicons?sz=20&domain_url=" +
+                            s.link
+                              .replace("http://", "")
+                              .replace("https://", "")
+                              .split(/[/?#]/)[0]
+                          }
+                          alt="logo"
+                        ></img>
+                        {s.provider}
+                        <br></br>
+                        <div
+                          className="issued"
+                          style={{ paddingTop: "0.5rem" }}
+                        >
+                          Issued: {new Date(s.date).toDateString()}
+                        </div>
+
+                        <div
+                          className="credentials"
+                          style={{ paddingTop: "0.5rem" }}
+                        >
+                          <a
+                            href={s.link}
+                            target="_blank"
+                            rel="noreferrer"
+                            style={{ color: "#3F51B5", textDecoration: "none" }}
+                          >
+                            See creditential
+                          </a>
+                        </div>
+                        <div className="delIcon" style={{ float: "right" }}>
+                          <DeleteIcon
+                            color={"primary"}
+                            onClick={() => this.deleteCert(i)}
+                          />
+                        </div>
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <Dialog
+              open={this.state.show3}
+              onClose={this.handleClose3}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">Add Certificate</DialogTitle>
+              <DialogContent>
+                <form onSubmit={this.handleSubmit}>
+                  <div className="ui form">
+                    <div className="field">
+                      <label>Title</label>
+                      <input
+                        name="title"
+                        maxLength="30"
+                        required
+                        val={"fill here"}
+                        onChange={this.handleChange}
+                        type="text"
+                        placeholder="eg. Completed Course on Java"
+                      ></input>
+                    </div>
+                    <div className="field">
+                      <label>Provider</label>
+                      <input
+                        name="provider"
+                        maxLength="30"
+                        required
+                        val={"fill here"}
+                        onChange={this.handleChange}
+                        type="text"
+                        placeholder="eg. Udemy"
+                      ></input>
+                    </div>
+                    <div className="field">
+                      <label>Issued on</label>
+                      <input
+                        required
+                        type="Date"
+                        name="date"
+                        val={"fill here"}
+                        onChange={this.handleChange}
+                      ></input>
+                    </div>
+                    <div className="field">
+                      <label>Link</label>
+                      <input
+                        name="link"
+                        maxLength="100"
+                        required
+                        val={"fill here"}
+                        onChange={this.handleChange}
+                        type="text"
+                        placeholder="eg. https://www.udemy.com/certificate/UC-fb6...."
+                      ></input>
+                    </div>
+
+                    <div className="submit confirmdiv">
+                      <button className="medium ui button confirm">ADD</button>
+                    </div>
+                  </div>
+                </form>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={this.handlesublfj} color="primary">
+                  Submit
+                </Button>
+              </DialogActions>
+            </Dialog>
+
+            {/* certificates end */}
             <div className="contactInfo">
               <Typography variant="h5" component="h4">
                 <div className="headings">
@@ -217,7 +459,7 @@ class Profile extends Component {
                     aria-label="add"
                     style={{ marginLeft: "5px" }}
                   >
-                    <EditIcon />
+                    <AddIcon />
                   </Fab>
                 </div>
               </Typography>
