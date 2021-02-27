@@ -15,9 +15,11 @@ code {
 
 .nolink{
   color:white;
-}
-.nolink {
   text-decoration: none;
+}
+.nopadmar *{
+  padding: 0px;
+  margin: 0px;
 }
 /************************* Homepage *******************/
 .homegrid{

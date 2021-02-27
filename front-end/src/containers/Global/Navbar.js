@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -175,6 +175,8 @@ export default function PrimarySearchAppBar() {
               <SearchIcon />
             </div>
             <InputBase
+              onChange={props.onch}
+              onKeyUp={e => { if (e.which === 13) { props.dient() } }}
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,
@@ -183,8 +185,8 @@ export default function PrimarySearchAppBar() {
               inputProps={{ "aria-label": "search" }}
             />
           </div>
-          <Link className="nolink" to="home"> <Button color="inherit" startIcon={<HomeIcon/>}>Home</Button></Link>
-          <Link className="nolink" to="bookmark"><Button color="inherit" startIcon={<BookmarkIcon/>}>Bookmark</Button></Link>
+          <Link className="nolink" to="/home"> <Button color="inherit" startIcon={<HomeIcon/>}>Home</Button></Link>
+          <Link className="nolink" to="/bookmark"><Button color="inherit" startIcon={<BookmarkIcon/>}>Bookmark</Button></Link>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
