@@ -10,6 +10,7 @@ const userScehma = new mongoose.Schema({
         type: String,
         required: true
     },
+    phoneNumber: String,
     emailToken: String,
     name: String,
     dept: String,

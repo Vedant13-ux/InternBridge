@@ -29,13 +29,13 @@ class RegisterStudents extends React.Component {
       confirm: "",
       role: "Student",
       error: "",
-      success: ""
+      success: false
     }
     this.handleChange = (e) => {
       return this.setState({ [e.target.name]: e.target.value })
     };
     this.handleSubmit = (e) => {
-      e.preventDefault()
+      e.preventDefault();
       const { name, email, phoneNumber, password, year, role } = this.state;
       const data = { name, email, phoneNumber, password, year, role }
       apiCallAuth('post', '/signup', data)
@@ -43,7 +43,8 @@ class RegisterStudents extends React.Component {
           console.log(response)
           await this.setState({ success: true })
         }).catch((err) => {
-          return this.setState({ error: err })
+          console.log(err);
+          return this.setState({ error: err.message })
         });
     }
   }
@@ -118,7 +119,6 @@ class RegisterStudents extends React.Component {
 
             />
             <TextField
-              required
               fullWidth
               label="Confirm Password"
               placeholder="Confirm your password"
@@ -134,7 +134,7 @@ class RegisterStudents extends React.Component {
             <Alert severity="error">{this.state.error}</Alert>
           }
           {this.state.success &&
-            <Alert severity="success">A verification link has been sent to your Email. Please Click on the link to verify your Email. </Alert>
+            <Alert severity="success">Please click on the link sent to you on your Email. </Alert>
           }
         </Paper>
       </Grid >

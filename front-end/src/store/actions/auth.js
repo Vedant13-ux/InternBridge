@@ -1,5 +1,5 @@
-import { apiCallAuth, apiCall } from '../../services/api'
-import { setTokenHeader } from '../../services/api'
+import { apiCallAuth, apiCall } from '../../api/api'
+import { setTokenHeader } from '../../api/api'
 
 export function setCurrentUser(user) {
     return {
