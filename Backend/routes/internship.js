@@ -74,7 +74,7 @@ router.post('/search/filter', async (req, res, next) => {
 });
 
 router.get('/details/:id', (req, res, next) => {
-    db.InternshipDetails.findById(req.params.id).populate('faculty', 'name email _id photo').populate('applicants', 'name  email _id photo')
+    db.Internship.findById(req.params.id).populate('faculty', 'name email _id photo').populate('applicants', 'name  email _id photo')
         .exec((err, internship) => {
             if (!internship) {
                 return res.status(404).send({});

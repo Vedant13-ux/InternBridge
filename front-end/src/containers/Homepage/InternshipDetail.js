@@ -57,15 +57,15 @@ class InternshipDetail extends Component {
                     <div className="internshipTitle">
                       <h1>{this.state.details.title}</h1>
                       <div className="floatingclass"><div>
-                        <div className="category">{this.state.details.category}</div>
-                        {this.state.details.faculty.email === this.props.currentUser.user.email && (
+                        {/* {this.state.details.faculty.email === this.props.currentUser.user.email && (
                           <span
                             className="deleteproj"
                             onClick={this.handleShow3}
                           >
                             <i className="fa fa-edit"></i>
                           </span>
-                        )}</div></div>
+                        )} */}
+                        </div></div>
                     </div>
                     <div className="provider">
                       <img
@@ -73,8 +73,8 @@ class InternshipDetail extends Component {
                         alt="pfp"
                         className="avatar-pro"
                       ></img>
-                      <Link className="author" to={"/profile/" + this.state.details.faculty.email.split('@')[0]}>
-                        {this.state.details.faculty.fname} {this.state.details.faculty.lname}
+                      <Link className="author" to={"/profile/" + this.state.details.faculty._id+'/'+this.state.details.faculty.name}>
+                        {this.state.details.faculty.name}
                       </Link>
                     </div>
                     <br></br>
