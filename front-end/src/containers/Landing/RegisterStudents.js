@@ -160,7 +160,7 @@ class RegisterStudents extends React.Component {
           )}
           {this.state.success && (
             <Alert severity="success">
-              Please click on the link sent to you on your Email.{" "}
+              Please click on the link sent to you on your Email.
             </Alert>
           )}
         </Paper>
