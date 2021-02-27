@@ -9,11 +9,11 @@ function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 }
 
-router.get('/searchinternships', async (req, res, next) => {
+router.get('/getAll', async (req, res, next) => {
     try {
         var recentDate = new Date();
         let internships = await db.Internship.find({ applyBy: { $gte: recentDate } }).populate({ path: 'faculty', select: 'name photo email _id' }).exec();
-        ressend(internships);
+        res.send(internships);
     } catch (err) {
         next(err);
     }
@@ -91,7 +91,7 @@ router.get('/search/skills', async (req, res, next) => {
 
 });
 // Create Internship
-router.post('/', async (req, res, next) => {
+router.post('/create/internship', async (req, res, next) => {
     console.log(req.body);
     req.body.duration = parseInt(req.body.duration);
     req.body.numberOpenings = parseInt(req.body.numberOpenings);
