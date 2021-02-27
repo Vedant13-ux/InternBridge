@@ -10,6 +10,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import { Typography, Slider } from "@material-ui/core";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import Filterform from './filterform'
 
 const styles = (theme) => ({
   root: {
@@ -85,48 +86,9 @@ export default function CustomizedDialogs() {
           Filter Internship
         </DialogTitle>
         <DialogContent dividers>
-          <div style={{ padding: "15px", marginLeft: "25px", marginRight: "25px" }}>
-          <FormControlLabel
-        control={
-          <Checkbox
-            // checked={state.checkedB}
-            // onChange={handleChange}
-            name="checkedB"
-            color="primary"
-          />
-        }
-        label="work from home"
-      />
-      <FormControlLabel
-        control={
-          <Checkbox
-            // checked={state.checkedB}
-            // onChange={handleChange}
-            name="checkedB"
-            color="primary"
-          />
-        }
-        label="external"
-      />
-            <Typography id="range-slider" gutterBottom>
-              duration (in months)
-            </Typography>
-            <Slider
-              value={valr}
-              onChange={(e,v)=>setvalr(v)} //
-              valueLabelDisplay="auto"
-              min={0}
-              step={1}
-              max={12}
-              aria-labelledby="range-slider"
-            />
-          </div>
+          <Filterform/>
         </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose} color="primary">
-            Apply
-          </Button>
-        </DialogActions>
+
       </Dialog>
     </div>
   );
