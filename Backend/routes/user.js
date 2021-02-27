@@ -103,16 +103,15 @@ router.put('/profile/update/basicinfo', (req, res, next) => {
         });
 });
 
-// experience
-router.put('/profile/update/experiences', (req, res, next) => {
+// sub info
+router.put('/profile/updatesub/:type', (req, res, next) => {
     db.User.findById(req.body.id)
         .then(async user => {
             if (!user) {
                 return next({ status: 404, message: "User Not Found" });
             }
             try {
-                let experience = await db.Experience.create(req.body.experience)
-                await user.experiences.push(experience);
+                await user[req.params.type].push(req.body.experience);
                 await user.save();
                 res.send(experience);
             } catch (error) {
@@ -122,6 +121,38 @@ router.put('/profile/update/experiences', (req, res, next) => {
             next(err);
         });
 });
+router.delete('/profile/updatesub/:type/:userId/:expId', (req, res, next) => {
+    db.User.findById(req.params.userId)
+        .then(async (user) => {
+            if (!user) {
+                return next({
+                    status: 404,
+                    message: "User Not Found"
+                })
+            }
+            try {
+                let to_remove = user.experiences.findIndex((m) => String(m._id) === String(req.params.expId));
+                if (to_remove==-1){
+                    return res.send('doesnt exist');
+                }
+                await user.experiences.splice(to_remove, 1);
+                await user.save();
+                return res.send('experience deleted');
+            } catch (err) {
+                next(err);
+            }
+        }).catch((err) => {
+            next(err);
+        });
+})
+router.put('/profile/editsub/:type', (req, res, next) => {
+    db[req.params.type].findByIdAndUpdate(req.body.data._id, req.body.data)
+        .then(async () => {
+            res.send('Updated!');
+        }).catch((err) => {
+            next(err);
+        });
+})
 
 
 
