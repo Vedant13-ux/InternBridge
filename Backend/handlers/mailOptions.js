@@ -445,8 +445,8 @@ function mailOptions(req, process) {
                             <table border="0" cellpadding="0" cellspacing="0" width="450" id="templateHeader" style="background-color: #020c53 ;border-bottom:0;">
                               <tr>
   
-                                <td class="headerContent centeredWithBackground" style="color:#ffca3d !important;border-collapse:collapse;color:#202020;font-family:Arial;font-size:34px;font-weight:bold;line-height:100%;padding:0;text-align:center;vertical-align:middle;background-color:#020c53;padding-bottom:20px;padding-top:20px; border-top-left-radius:30px; border-top-right-radius:30px">
-                                    KJSCE Connect
+                                <td class="headerContent centeredWithBackground" style="color:white !important;border-collapse:collapse;color:#202020;font-family:Arial;font-size:34px;font-weight:bold;line-height:100%;padding:0;text-align:center;vertical-align:middle;background-color:#020c53;padding-bottom:20px;padding-top:20px; border-top-left-radius:30px; border-top-right-radius:30px">
+                                    Intern Bridge
                                 </td>
                               </tr>
                             </table>
