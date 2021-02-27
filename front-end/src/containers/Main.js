@@ -60,7 +60,6 @@ class Main extends React.Component {
             path="/signup"
             render={(props) => <Signup {...props} />}
           />
-
           <Route path="*" render={(props) => <div>not found</div>} />
         </Switch>
       </div>
