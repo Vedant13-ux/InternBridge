@@ -9,6 +9,9 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import SaveIcon from "@material-ui/icons/Save";
+
+
 import EditIcon from "@material-ui/icons/Edit";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -25,15 +28,24 @@ class Profile extends Component {
             user: {},
             show1: false,
             lookingforjob: '',
-            owner: true
+            owner: true,
+            bioEditable: false
         };
         this.start = true;
         this.edit = (a, b) => {
             this.setState({ a: b })
         }
         this.handleClose1 = (e) => {
-            this.setState({ show1: !this.state.show1 });
+            this.setState({ bioEditable: !this.state.bioEditable });
+            this.bio.current.style.border = "4px solid black"
         };
+        this.bio = React.createRef();
+
+        // Handle Edit
+        this.handleEdit = e => {
+            this.bio.current.focus();
+            this.setState({ bioEditable: !this.state.bioEditable });
+        }
         // console.log('')
     }
     componentDidMount() {
@@ -67,6 +79,7 @@ class Profile extends Component {
                             <Fab color="secondary" aria-label="add" className="body">
                                 <ThumbUpAltIcon />
                             </Fab>
+
                             <Fab
                                 color="secondary"
                                 aria-label="add"
@@ -94,14 +107,27 @@ class Profile extends Component {
                                         color="secondary"
                                         aria-label="add"
                                         style={{ marginLeft: "5px" }}
-                                        onClick={this.handleClose1}
+                                        onClick={this.handleEdit}
                                         className="uibtn"
                                     >
                                         <EditIcon />
                                     </Fab>
+                                    {this.state.bioEditable &&
+
+                                        <Button
+                                            style={{ "marginLeft": "5px" }}
+                                            variant="contained"
+                                            color="primary"
+                                            size="small"
+                                            startIcon={<SaveIcon />}
+                                        >
+                                            Save
+                                     </Button>
+                                    }
+
                                 </div>
                             </Typography>
-                            <Paper className="paper">
+                            <Paper className="paper" contentEditable={this.state.bioEditable} ref={this.bio}>
                                 Lorem iossdkjas dkajshd kasjdha kshdasd Lorem iossdkjas dkajshd
                                 kasjdha kshdasd Lorem iossdkjas dkajshd kasjdha kshdasd Lorem
                                 iossdkjas dkajshd kasjdha kshdasd Lorem iossdkjas dkajshd
