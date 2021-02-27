@@ -1,21 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import TabPanel from "@material-ui/lab/TabPanel";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Login from "./Login";
-import Signup from "./Signup";
-
+import RegisterStudents from "./RegisterStudents";
+import RegisterFaculty from "./RegisterFaculty";
+import Grid from "@material-ui/core/Grid";
 const Accounts = () => {
-  const [value, setValue] = React.useState(0);
-
+  const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  // tabpanel
+  // const paperStyle = { width: 320, padding: 20, margin: "20px auto" };
+  const paperStyle = {
+    width: 360,
+    margin: "20px auto",
+  };
   function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -28,16 +31,17 @@ const Accounts = () => {
         {...other}
       >
         {value === index && (
-          <Box p={3}>
+          <Box>
             <Typography>{children}</Typography>
           </Box>
         )}
       </div>
     );
   }
+
   return (
-    <div>
-      <Paper square>
+    <Grid align="center">
+      <Paper elevation={20} style={paperStyle}>
         <Tabs
           value={value}
           indicatorColor="primary"
@@ -45,18 +49,19 @@ const Accounts = () => {
           onChange={handleChange}
           aria-label="disabled tabs example"
         >
-          <Tab label="Sign in" />
+          <Tab label="Student" />
 
-          <Tab label="Register" />
+          <Tab label="Faculty" />
         </Tabs>
         <TabPanel value={value} index={0}>
-          <Login />
+          {/* <Login handleChange={handleChange} /> */}
+          <RegisterStudents />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Signup />
+          <RegisterFaculty />
         </TabPanel>
       </Paper>
-    </div>
+    </Grid>
   );
 };
 
