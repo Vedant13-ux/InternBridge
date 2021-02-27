@@ -14,6 +14,7 @@ const Login = () => {
     padding: 20,
     height: "65vh",
     width: 320,
+
     margin: "20px auto",
   };
   const avatarStyle = { backgroundColor: "#1bbd7e" };

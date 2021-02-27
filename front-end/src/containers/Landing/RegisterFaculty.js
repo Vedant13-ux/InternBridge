@@ -16,49 +16,26 @@ import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 
-
-// const useStyles = makeStyles((theme) => ({
-//   button: {
-//     display: "block",
-//     marginTop: theme.spacing(2),
-//   },
-//   formControl: {
-//     margin: theme.spacing(1),
-//     minWidth: 120,
-//   },
-// }));
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
   },
 }));
-const Signup = () => {
+const RegisterFaculty = () => {
   // events
   const classes = useStyles();
-  // const [age, setAge] = React.useState("");
-  // const [open, setOpen] = React.useState(false);
-
-  // const handleChange = (event) => {
-  //   setAge(event.target.value);
-  // };
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-
-  // const handleOpen = () => {
-  //   setOpen(true);
-  // };
 
   // styling
   const paperStyle = {
     padding: "30px 20px",
     width: 320,
-    height: "65vh",
+    height: "70vh",
     margin: "20px auto",
   };
-
+  const formControlStyle = {
+    paddingRight: "175px",
+  };
   const headerStyle = { margin: 0 };
   const avatarStyle = { backgroundColor: "#1bbd7e" };
   return (
@@ -77,13 +54,7 @@ const Signup = () => {
           <TextField fullWidth label="Name" placeholder="Enter your name" />
           <TextField fullWidth label="Email" placeholder="Enter your email" />
 
-          <TextField
-            fullWidth
-            label="Phone Number"
-            placeholder="Enter your phone number"
-          />
-
-          <FormControl className={classes.formControl}>
+          <FormControl className={classes.formControl} style={formControlStyle}>
             <InputLabel htmlFor="grouped-select">Branch</InputLabel>
             <Select defaultValue="" id="grouped-select">
               <MenuItem value={"CS"}>CS</MenuItem>
@@ -93,15 +64,7 @@ const Signup = () => {
               <MenuItem value={"Etrx"}>Etrx</MenuItem>
             </Select>
           </FormControl>
-          <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="grouped-select">Year</InputLabel>
-            <Select defaultValue="" id="grouped-select">
-              <MenuItem value={"FY"}>FY</MenuItem>
-              <MenuItem value={"SY"}>SY</MenuItem>
-              <MenuItem value={"TY"}>TY</MenuItem>
-              <MenuItem value={"LY"}>LY</MenuItem>
-            </Select>
-          </FormControl>
+
           <TextField
             fullWidth
             label="Password"
@@ -125,4 +88,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default RegisterFaculty;
