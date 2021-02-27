@@ -8,6 +8,8 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import { Typography, Slider } from "@material-ui/core";
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const styles = (theme) => ({
   root: {
@@ -55,7 +57,7 @@ const DialogActions = withStyles((theme) => ({
 
 export default function CustomizedDialogs() {
   const [open, setOpen] = React.useState(false);
-  const [valr,setvalr] = React.useState(0)
+  const [valr,setvalr] = React.useState([2,4])
 
   const handleClickOpen = () => {
     console.log("open");
@@ -84,6 +86,28 @@ export default function CustomizedDialogs() {
         </DialogTitle>
         <DialogContent dividers>
           <div style={{ padding: "15px", marginLeft: "25px", marginRight: "25px" }}>
+          <FormControlLabel
+        control={
+          <Checkbox
+            // checked={state.checkedB}
+            // onChange={handleChange}
+            name="checkedB"
+            color="primary"
+          />
+        }
+        label="work from home"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            // checked={state.checkedB}
+            // onChange={handleChange}
+            name="checkedB"
+            color="primary"
+          />
+        }
+        label="external"
+      />
             <Typography id="range-slider" gutterBottom>
               duration (in months)
             </Typography>
@@ -100,7 +124,7 @@ export default function CustomizedDialogs() {
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose} color="primary">
-            Save changes
+            Apply
           </Button>
         </DialogActions>
       </Dialog>
