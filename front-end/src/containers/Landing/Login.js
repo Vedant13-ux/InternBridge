@@ -9,20 +9,17 @@ import {
   Link,
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 const Login = () => {
   const paperStyle = {
     padding: 20,
-    height: "70vh",
-    width: 280,
+    height: "65vh",
+    width: 320,
     margin: "20px auto",
   };
   const avatarStyle = { backgroundColor: "#1bbd7e" };
   const btnstyle = { margin: "35px 0" };
-  const checkboxStyle = { margin: "20px 0 0 0" };
   const textFieldStyle = { margin: "15px 0" };
-  const assistStyle = { margin: "5px 0" };
+
   return (
     <Grid>
       <Paper elevation={10} style={paperStyle}>
@@ -33,8 +30,8 @@ const Login = () => {
           <h2>Sign In</h2>
         </Grid>
         <TextField
-          label="Username"
-          placeholder="Enter username"
+          label="Email"
+          placeholder="Enter Email"
           style={textFieldStyle}
           fullWidth
           required
@@ -46,11 +43,7 @@ const Login = () => {
           fullWidth
           required
         />
-        <FormControlLabel
-          control={<Checkbox name="checkedB" color="primary" />}
-          label="Remember me"
-          style={checkboxStyle}
-        />
+
         <Button
           type="submit"
           color="primary"
@@ -60,9 +53,9 @@ const Login = () => {
         >
           Sign in
         </Button>
-        <Typography style={assistStyle}>
+        {/* <Typography style={assistStyle}>
           <Link href="#">Forgot password ?</Link>
-        </Typography>
+        </Typography> */}
         <Typography>
           {" "}
           Don't have an account? <Link href="#">Sign Up</Link>
