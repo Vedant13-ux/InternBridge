@@ -119,6 +119,7 @@ const userScehma = new mongoose.Schema({
             type: String,
             default: ''
         },
+        likes: Number
     }
 
 
