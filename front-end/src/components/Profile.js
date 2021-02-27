@@ -307,7 +307,7 @@ class Profile extends Component {
                   </div>
                 </Typography>
                 {this.props.isowner && (
-                  <span className="add" onClick={this.handleShow2}>
+                  <span className="add" onClick={this.handleShow3}>
                     <i className="far fa-plus-square"></i>
                   </span>
                 )}
@@ -318,7 +318,6 @@ class Profile extends Component {
                     <div class="ui segment">
                       <h4 style={{ margin: "0" }}>
                         {s.title}
-
                         {this.props.isowner && (
                           <span
                             className="deletecert"
@@ -449,6 +448,142 @@ class Profile extends Component {
             </Dialog>
 
             {/* certificates end */}
+
+            {/* achievements  */}
+
+            <div className="panel" id="achievements">
+              <div className="panel-heading">
+                <span className="panel-icon">
+                  <i className="fa fa-pencil" />
+                </span>
+
+                <Typography variant="h5" component="h4">
+                  <div className="headings">
+                    Achievements
+                    <Fab
+                      size="small"
+                      color="primary"
+                      aria-label="add"
+                      onClick={this.handleClose4}
+                      style={{ marginLeft: "5px" }}
+                    >
+                      <AddIcon />
+                    </Fab>
+                  </div>
+                </Typography>
+                {this.props.isowner && (
+                  <span className="add" onClick={this.handleShow4}>
+                    <i className="far fa-plus-square"></i>
+                  </span>
+                )}
+              </div>
+              <div className="panel-body pb5" style={{ marginTop: "1rem" }}>
+                <div class="ui stacked segments">
+                  {this.state.user.achievements.map((e, i) => {
+                    return (
+                      <div class="ui segment">
+                        <div className="experience-ele">
+                          <h4>{e.title}</h4>
+                          {this.props.owner && (
+                            <span
+                              className="deleteproj"
+                              onClick={() => this.handleClose4(e)}
+                            >
+                              <i className="fa fa-edit"></i>
+                            </span>
+                          )}
+                          <h5>Award/Prize : {e.reward}</h5>
+                          <div>
+                            Date : {new Date(e.date).toDateString()}
+                            <br></br>
+                            <h6>{e.description}</h6>
+                          </div>
+                          {e.link && (
+                            <div>
+                              <a href={e.link} target="_blank" rel="noreferrer">
+                                See achievement
+                              </a>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            <Dialog
+              open={this.state.show3}
+              onClose={this.handleClose3}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">Add Certificate</DialogTitle>
+              <DialogContent>
+                <form onSubmit={this.handleSubmit}>
+                  <div className="ui form">
+                    <div className="field">
+                      <label>Title</label>
+                      <input
+                        name="title"
+                        maxLength="30"
+                        required
+                        val={"fill here"}
+                        onChange={this.handleChange}
+                        type="text"
+                        placeholder="eg. Completed Course on Java"
+                      ></input>
+                    </div>
+                    <div className="field">
+                      <label>Provider</label>
+                      <input
+                        name="provider"
+                        maxLength="30"
+                        required
+                        val={"fill here"}
+                        onChange={this.handleChange}
+                        type="text"
+                        placeholder="eg. Udemy"
+                      ></input>
+                    </div>
+                    <div className="field">
+                      <label>Issued on</label>
+                      <input
+                        required
+                        type="Date"
+                        name="date"
+                        val={"fill here"}
+                        onChange={this.handleChange}
+                      ></input>
+                    </div>
+                    <div className="field">
+                      <label>Link</label>
+                      <input
+                        name="link"
+                        maxLength="100"
+                        required
+                        val={"fill here"}
+                        onChange={this.handleChange}
+                        type="text"
+                        placeholder="eg. https://www.udemy.com/certificate/UC-fb6...."
+                      ></input>
+                    </div>
+
+                    <div className="submit confirmdiv">
+                      <button className="medium ui button confirm">ADD</button>
+                    </div>
+                  </div>
+                </form>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={this.handlesublfj} color="primary">
+                  Submit
+                </Button>
+              </DialogActions>
+            </Dialog>
+
+            {/* achivements end */}
             <div className="contactInfo">
               <Typography variant="h5" component="h4">
                 <div className="headings">
