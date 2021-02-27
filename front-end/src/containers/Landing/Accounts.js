@@ -45,15 +45,15 @@ const Accounts = () => {
           onChange={handleChange}
           aria-label="disabled tabs example"
         >
-          <Tab label="Active" />
+          <Tab label="Sign in" />
 
-          <Tab label="Active2" />
+          <Tab label="Register" />
         </Tabs>
         <TabPanel value={value} index={0}>
           <Login />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          {/* <Signup /> */}
+          <Signup />
         </TabPanel>
       </Paper>
     </div>
