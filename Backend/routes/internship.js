@@ -23,6 +23,7 @@ router.get('/getAll', async (req, res, next) => {
 router.get('/search/title/:query', async (req, res, next) => {
     try {
         var regex = new RegExp(escapeRegex(req.params.query), 'gi');
+        var recentDate = new Date();
         let internships = await db.Internship.find({ title: regex, applyBy: { $gte: recentDate } }).populate('faculty').exec();
         res.status(200).send(internships);
     } catch (err) {

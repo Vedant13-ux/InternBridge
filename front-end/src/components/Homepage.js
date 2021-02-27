@@ -10,8 +10,20 @@ class Homepage extends Component {
   constructor(props) {
       super(props)
     this.state = {
+      searchfield:'',
       internship: [],
     };
+    this.changesf=(ne)=>{
+      this.setState({searchfield:ne.target.value})
+    }
+    this.searchclick=()=>{
+      apiCall('get','/internship/search/title/'+this.state.searchfield)
+      .then((d)=>{
+        this.setState({internship:d})
+        console.log(d)
+      })
+      .catch((e)=>console.log(e))
+      } 
   }
   componentDidMount(){
     apiCall('get','/internship/getAll')
@@ -24,7 +36,7 @@ class Homepage extends Component {
   render() {
     return (
       <div>
-        <Navbar></Navbar>
+        <Navbar onch={this.changesf} dient={this.searchclick}></Navbar>
         <div className="homegrid">
           <Grid container spacing={3}>
             {this.state.internship.map((d, i) => {

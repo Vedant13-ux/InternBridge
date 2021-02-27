@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import Navbar from "../Global/Navbar";
 import {Link} from 'react-router-dom'
 import {apiCall} from '../../api/api'
+import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
+import HomeIcon from '@material-ui/icons/Home';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
 
 class InternshipDetail extends Component {
   constructor(props) {
@@ -81,17 +84,38 @@ class InternshipDetail extends Component {
                     <div id="iconinfo" className="flex-container">
                       <div className="flex-item">
                         <h4>
-                          <i className="fa fa-clock mr-1"></i>Duration
+                          <div style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              flexWrap: 'wrap',
+                          }}>
+                              <AccessTimeIcon />
+                              <span>Duration</span>
+                          </div>  
                 </h4><p>{this.state.details.duration} months</p>
                       </div>
                       <div className="flex-item">
                         <h4>
-                          <i className="fa fa-home mr-1"></i>Type
+                          <div style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              flexWrap: 'wrap',
+                          }}>
+                              <HomeIcon />
+                              <span>Type</span>
+                          </div>  
                 </h4><p> {this.state.details.type}</p>
                       </div>
 
                       <div className="flex-item"><h4>
-                        <i className="fa fa-hourglass mr-2"></i>Apply by
+                        <div style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              flexWrap: 'wrap',
+                          }}>
+                              <HourglassEmptyIcon />
+                              <span>Apply by</span>
+                          </div>  
                     </h4><p>{(new Date(this.state.details.applyBy)).toDateString()}</p></div>
                     </div><hr></hr>
                     <h3>About Internship</h3>
