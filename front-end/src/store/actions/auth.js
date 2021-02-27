@@ -36,6 +36,7 @@ export function authUser(emailToken) {
     };
 }
 export function loginUser(user) {
+    console.log(user);
     return dispatch => {
         return new Promise((resolve, reject) => {
             return apiCallAuth('post', '/signin', user)

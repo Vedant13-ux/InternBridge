@@ -132,7 +132,7 @@ router.delete('/profile/updatesub/:type/:userId/:expId', (req, res, next) => {
             }
             try {
                 let to_remove = user.experiences.findIndex((m) => String(m._id) === String(req.params.expId));
-                if (to_remove==-1){
+                if (to_remove == -1) {
                     return res.send('doesnt exist');
                 }
                 await user.experiences.splice(to_remove, 1);
