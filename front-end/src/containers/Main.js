@@ -5,13 +5,7 @@ import Landing from "../components/Landing";
 import Login from "../containers/Landing/Login";
 import Signup from "../containers/Landing/Signup";
 import Accounts from "../containers/Landing/Accounts";
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import Homepage from '../components/Homepage'
-import Landing from '../components/Landing';
-import Login from '../containers/Landing/Login'
-import Signup from '../containers/Landing/Signup'
-import Bookmark from '../components/Bookmark'
+import Bookmark from "../components/Bookmark";
 // import NotFound from '../images/NotFound'
 
 class Main extends React.Component {
@@ -72,8 +66,6 @@ class Main extends React.Component {
       </div>
     );
   }
-      
-    
 }
 
 export default Main;
