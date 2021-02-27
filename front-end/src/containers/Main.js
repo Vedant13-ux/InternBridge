@@ -61,12 +61,7 @@ class Main extends React.Component {
             currentUser={currentUser}
             render={(props) => <Homepage {...props} />}
           />
-          <Route
-            exact
-            currentUser={currentUser}
-            path="/bookmark"
-            render={(props) => <Bookmark {...props} />}
-          />
+         
           <Route
             exact
             currentUser={currentUser}

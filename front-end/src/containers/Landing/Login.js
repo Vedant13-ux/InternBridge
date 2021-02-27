@@ -27,6 +27,7 @@ class Login extends React.Component {
       console.log(this.state)
       const { email, password } = this.state
       const data = { email, password }
+      console.log(data)
       this.props.loginUser(data)
         .then((result) => {
           console.log('Logged In')
@@ -64,6 +65,7 @@ class Login extends React.Component {
               fullWidth
               required
               name="email"
+              onChange={this.handleChange}
             />
             <TextField
               label="Password"
@@ -72,6 +74,8 @@ class Login extends React.Component {
               fullWidth
               required
               name="password"
+              onChange={this.handleChange}
+
             />
             <Typography>
               Don't have an account? <Link href="/register">Sign Up</Link>
