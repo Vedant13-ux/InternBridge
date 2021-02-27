@@ -66,7 +66,7 @@ export default function RecipeReviewCard(props) {
           <h4>{props.data.title}</h4>
         </div>
         <Typography variant="body2" color="textSecondary" component="p">
-          {props.data.description}
+          {props.data.description.slice(0,60)+'...'}
         </Typography>
         <div className="nopadmar">
           <h5>Apply By</h5>
