@@ -38,7 +38,6 @@ class Main extends React.Component {
         // if (!currentUser.user._id && localStorage.getItem('isAuthenticated') !== 'false' && JSON.parse(localStorage.getItem('isAuthenticated')) !== null) {
         //     return <div></div>
         // }
-
         return (
             <div>
                 <Switch>
