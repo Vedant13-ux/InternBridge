@@ -43,7 +43,7 @@ export function loginUser(user) {
                     localStorage.setItem("jwtToken", token);
                     localStorage.setItem('isAuthenticated', true);
                     await setAuthorizationHeader(token);
-                    console.log("Logeed iN and added token");
+                    console.log("Logged iN and added token");
                     dispatch(setCurrentUser(user));
                     resolve();
                 })

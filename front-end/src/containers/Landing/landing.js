@@ -1,6 +1,7 @@
 import React from "react";
 import Login from "./Login";
 import { Link } from "react-router-dom";
+import { TextField ,Button } from '@material-ui/core'
 
 const LandingPage = () => {
   return (
@@ -71,14 +72,14 @@ const LandingPage = () => {
                     </a>
                   </li> */}
                   <li class="nav-item">
-                    <a href="contact.html" class="nav-link contact">
+                    <Link to="/login" class="nav-link contact">
                       Login
-                    </a>
+                    </Link>
                   </li>
                   <li class="nav-item">
-                    <a href="contact.html" class="nav-link contact">
+                    <Link to="/register" class="nav-link contact">
                       Register
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -94,14 +95,14 @@ const LandingPage = () => {
                       Never miss an Internship Opportunty.
                     </h1>
 
-                    <a
-                      href="contact.html"
+                    <Link
+                      to="/home"
                       class="custom-btn btn-bg btn mt-3"
                       data-aos="fade-up"
                       data-aos-delay="100"
                     >
                       Explore now
-                    </a>
+                    </Link>
                   </div>
                 </div>
 
@@ -112,7 +113,7 @@ const LandingPage = () => {
                     data-aos-delay="300"
                   >
                     <img
-                      src="images/working-girl.png"
+                      src="landing/images/working-girl.png"
                       class="img-fluid"
                       alt="working girl"
                     />
@@ -148,7 +149,7 @@ const LandingPage = () => {
                     data-aos-delay="200"
                   >
                     <img
-                      src="images/office.png"
+                      src="landing/images/office.png"
                       class="img-fluid"
                       alt="office"
                     />
@@ -179,7 +180,7 @@ const LandingPage = () => {
                     Subscribe to our mail to always be updated with our latest
                     features
                   </p>
-                  <p>dummy@dummy.com</p>
+                  <TextField id="standard-basic" color="primary" label="email" /><Button color="primary">Confirm</Button>
                 </div>
               </div>
             </div>

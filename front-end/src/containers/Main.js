@@ -1,7 +1,6 @@
 import React from "react";
 import { Switch, Route, withRouter } from "react-router-dom";
 import Homepage from "../components/Homepage";
-import Landing from "../components/Landing";
 import Login from "../containers/Landing/Login";
 import Register from "./Landing/RegisterMain";
 import Bookmark from "../components/Bookmark";
@@ -15,6 +14,7 @@ import {
   setAuthorizationHeader,
   authUser,
   setCurrentUser,
+  loginUser
 } from "../store/actions/auth";
 import LandingPage from "./Landing/landing";
 import EmailVerificaton from '../components/EmailVerification'
@@ -54,20 +54,14 @@ class Main extends React.Component {
     return (
       <div>
         <Switch>
-          <Route exact path="/" render={(props) => <Landing {...props} />} />
+          <Route exact path="/" render={(props) => <LandingPage {...props} />} />
           <Route
             exact
             path="/home"
             currentUser={currentUser}
             render={(props) => <Homepage {...props} />}
           />
-          <Route exact path="/login" render={(props) => <Login {...props} />} />
-          <Route
-            exact
-            currentUser={currentUser}
-            path="/bookmark"
-            render={(props) => <Bookmark {...props} />}
-          />
+         
           <Route
             exact
             currentUser={currentUser}
@@ -81,25 +75,6 @@ class Main extends React.Component {
             currentUser={currentUser}
             path="/bookmark"
             render={(props) => <Bookmark {...props} />}
-          />
-          <Route
-            exact
-            path="/internship/:id"
-            render={(props) => (
-              <IntershipDetail key={props.match.params.id} {...props} />
-            )}
-          />
-          <Route
-            exact
-            currentUser={currentUser}
-            path="/bookmark"
-            render={(props) => <Bookmark {...props} />}
-          />
-          <Route
-            exact
-            currentUser={currentUser}
-            path="/landing"
-            render={(props) => <LandingPage {...props} />}
           />
           <Route
             exact
@@ -107,7 +82,7 @@ class Main extends React.Component {
             path="/register"
             render={(props) => <Register {...props} />}
           />
-          <Route exact path="/login" render={(props) => <Login {...props} />} />
+          <Route exact path="/login" render={(props) => <Login loginUser={this.props.loginUser} {...props} />} />
           <Route
             exact
             path="/profile/:id/:name"
@@ -128,7 +103,7 @@ function mapStateToProps(state) {
 }
 
 export default withRouter(
-  connect(mapStateToProps, { authUser, setCurrentUser, updateRefresh, logout })(
+  connect(mapStateToProps, { authUser, setCurrentUser, updateRefresh, logout, loginUser })(
     Main
   )
 );

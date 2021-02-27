@@ -39,9 +39,10 @@ exports.signup = async function (req, res, next) {
 
 exports.signin = async function (req, res, next) {
     try {
+        console.log(req.body)
         let user = await db.User.findOne({
             email: req.body.email
-        }).populate('applications').populate('certificates').populate('experiences').populate('projects').populate('achievements').populate({ path: "internshipsOffered", populate: { path: 'applicants', select: 'fname lname email _id photo' } }).populate({ path: "internshipsOffered", populate: { path: 'recruited', select: 'fname lname email _id photo' } }).exec()
+        }, '-password').populate('applications').populate('certificates').populate('experiences').populate('projects').populate('achievements').populate({ path: "internshipsOffered", populate: { path: 'applicants', select: 'name email _id photo' } }).populate({ path: "internshipsOffered", populate: { path: 'recruited', select: 'name email _id photo' } }).exec()
         if (user.emailToken !== null) {
             return next({
                 status: 401,
@@ -49,19 +50,16 @@ exports.signin = async function (req, res, next) {
             })
         }
         let isMatch = await user.comparePassword(req.body.password, next);
-        const { email, _id, fname, lname, emailToken } = user;
+        const { email, _id, name, emailToken } = user._doc;
         if (isMatch) {
             let token = jwt.sign({
-                email, _id, fname, lname, emailToken
+                ...user._doc
             }, process.env.SECRET_KEY);
-
-            return res.status(200).json({
-                ...user._doc, token, password: ''
-            })
+            return res.status(200).send({ ...user._doc, token });
         } else {
             next({
                 status: 400,
-                message: 'Invalid Email/Passowrd.'
+                message: 'Invalid Email/Password.'
             })
         }
 
