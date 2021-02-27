@@ -68,7 +68,7 @@ export default function RecipeReviewCard(props) {
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-        <Link to={"/insternship/"+props.data._id}>more info</Link>
+        <Link to={"/internship/"+props.data._id}>more info</Link>
       </CardActions>
     </Card>
   );
