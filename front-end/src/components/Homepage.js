@@ -1,42 +1,35 @@
-import React, { Component } from 'react'
-import Navbar from '../containers/Global/Navbar'
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import React, { Component } from "react";
+import Navbar from "../containers/Global/Navbar";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import Internshipcard from '../containers/Homepage/Internshipcard'
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-    },
-  }));
-  
-  export default function Homepage() {
-    const classes = useStyles();
-  
+class Homepage extends Component {
+  constructor(props) {
+      super(props)
+    this.state = {
+      internship: [1,2],
+    };
+  }
+  render() {
     return (
-      <div className={classes.root}>
-          <Navbar></Navbar>
-          <div className="homegrid">
-        <Grid container spacing={3}>
-          <Grid item xs={3}>
-            <Paper className={classes.paper}>xs=3</Paper>
+      <div>
+        <Navbar></Navbar>
+        <div className="homegrid">
+          <Grid container spacing={3}>
+            {this.state.internship.map((d, i) => {
+            return (
+                <Grid item xs={3}>
+                  <Internshipcard></Internshipcard>
+                </Grid>
+              );
+            })}
           </Grid>
-          <Grid item xs={3}>
-            <Paper className={classes.paper}>xs=3</Paper>
-          </Grid>
-          <Grid item xs={3}>
-            <Paper className={classes.paper}>xs=3</Paper>
-          </Grid>
-          <Grid item xs={3}>
-            <Paper className={classes.paper}>xs=3</Paper>
-          </Grid>
-        </Grid>
         </div>
       </div>
     );
   }
+}
+
+export default Homepage;
