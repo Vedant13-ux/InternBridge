@@ -46,7 +46,7 @@ class Main extends React.Component {
   //     console.log("main mounted");
   // }
   render() {
-    // const currentUser = this.props.currentUser;
+    const currentUser = this.props.currentUser;
     // if (!currentUser.user._id && localStorage.getItem('isAuthenticated') !== 'false' && JSON.parse(localStorage.getItem('isAuthenticated')) !== null) {
     //     return <div></div>
     // }
@@ -58,11 +58,27 @@ class Main extends React.Component {
           <Route
             exact
             path="/home"
+            currentUser={currentUser}
             render={(props) => <Homepage {...props} />}
           />
           <Route exact path="/login" render={(props) => <Login {...props} />} />
           <Route
             exact
+            currentUser={currentUser}
+            path="/bookmark"
+            render={(props) => <Bookmark {...props} />}
+          />
+          <Route
+            exact
+            currentUser={currentUser}
+            path="/internship/:id"
+            render={(props) => (
+              <IntershipDetail key={props.match.params.id} {...props} />
+            )}
+          />
+          <Route
+            exact
+            currentUser={currentUser}
             path="/bookmark"
             render={(props) => <Bookmark {...props} />}
           />
@@ -75,39 +91,32 @@ class Main extends React.Component {
           />
           <Route
             exact
+            currentUser={currentUser}
             path="/bookmark"
             render={(props) => <Bookmark {...props} />}
           />
           <Route
             exact
-            path="/internship/:id"
-            render={(props) => (
-              <IntershipDetail key={props.match.params.id} {...props} />
-            )}
-          />
-          <Route
-            exact
-            path="/bookmark"
-            render={(props) => <Bookmark {...props} />}
-          />
-          <Route
-            exact
+            currentUser={currentUser}
             path="/landing"
             render={(props) => <LandingPage {...props} />}
           />
           <Route
             exact
+            currentUser={currentUser}
             path="/register"
             render={(props) => <Register {...props} />}
           />
           <Route exact path="/login" render={(props) => <Login {...props} />} />
           <Route
             exact
+            currentUser={currentUser}
             path="/signup"
             render={(props) => <Signup {...props} />}
           />
           <Route
             exact
+            currentUser={currentUser}
             path="/profile/:id/:name"
             render={(props) => <Profile {...props} />}
           />

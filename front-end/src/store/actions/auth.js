@@ -23,7 +23,7 @@ export function logout() {
 export function authUser(emailToken) {
     return dispatch => {
         return new Promise((resolve, reject) => {
-            return apiCallAuth('get', '/api/auth/verify-email/' + emailToken, '')
+            return apiCallAuth('get', '/verify-email/' + emailToken, '')
                 .then(({ token, ...user }) => {
                     localStorage.setItem("jwtToken", token);
                     localStorage.setItem('isAuthenticated', true);
@@ -38,7 +38,7 @@ export function authUser(emailToken) {
 export function loginUser(user) {
     return dispatch => {
         return new Promise((resolve, reject) => {
-            return apiCallAuth('post', '/api/auth/signin', user)
+            return apiCallAuth('post', '/signin', user)
                 .then(async ({ token, ...user }) => {
                     localStorage.setItem("jwtToken", token);
                     localStorage.setItem('isAuthenticated', true);

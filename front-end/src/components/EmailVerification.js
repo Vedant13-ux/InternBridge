@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
-import { authUser } from '../../store/actions/auth'
 
 
 class Emailverification extends Component {
@@ -36,11 +34,5 @@ class Emailverification extends Component {
 
     }
 }
-function mapStateToProps(state) {
-    return {
-        currentUser: state.currentUser
-    }
-}
-
-export default connect(mapStateToProps, { authUser })(Emailverification);
+export default Emailverification;
 
