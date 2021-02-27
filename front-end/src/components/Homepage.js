@@ -6,7 +6,8 @@ import Grid from "@material-ui/core/Grid";
 import Internshipcard from '../containers/Homepage/Internshipcard'
 import {apiCall} from '../api/api'
 import IconButton from "@material-ui/core/IconButton";
-// import 
+import ListIcon from "@material-ui/icons/List";
+import AddIcon from "@material-ui/icons/Add";
 
 class Homepage extends Component {
   constructor(props) {
@@ -54,9 +55,12 @@ class Homepage extends Component {
         <Navbar onch={this.changesf} dient={this.searchclick}></Navbar>
         <div className="homegrid">
           <div>
-          {/* <IconButton aria-label="delete">
-            <DeleteIcon />
-          </IconButton> */}
+          <IconButton aria-label="delete">
+            <ListIcon className="MuiIcon-colorPrimary" color="primary" />
+          </IconButton>
+          <IconButton aria-label="delete">
+            <AddIcon color="primary" />
+          </IconButton>
           </div>
          <div className="row">
             {this.state.internship.map((d, i) => {
