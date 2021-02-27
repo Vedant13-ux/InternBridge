@@ -73,7 +73,22 @@ router.post('/search/filter', async (req, res, next) => {
 
 });
 
+router.get('/details/:id', (req, res, next) => {
+    db.Internship.findById(req.params.id).populate('faculty', 'name email _id photo').populate('applicants', 'name  email _id photo')
+        .exec((err, internship) => {
+            if (!internship) {
+                return res.status(404).send({});
+            }
+            if (err) {
+                return next(err);
+            }
 
+            let curr = new Date();
+            internship["canApply"] = new Date(internship.applyBy) - curr > 0
+            console.log(internship.canApply)
+            return res.status(200).send(internship)
+        })
+});
 
 router.get('/search/skills', async (req, res, next) => {
     var skills = req.query.skills.split(',');

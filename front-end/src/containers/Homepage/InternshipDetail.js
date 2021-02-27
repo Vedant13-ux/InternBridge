@@ -1,64 +1,27 @@
 import React, { Component } from "react";
 import Navbar from "../Global/Navbar";
+import {Link} from 'react-router-dom'
+import {apiCall} from '../../api/api'
 
 class InternshipDetail extends Component {
   constructor(props) {
     super(props);
+    this.state={
+      details:{},
+      start:true,
+    }
   }
-
-//   componentWillMount() {
-//     document.documentElement.scrollTop = '0';
-//     return apiCall('get', '/internship/details/' + this.props.match.params.id, '')
-//       .then(
-//         async (data) => {
-//           console.log(data)
-//           if (Object.keys(data).length !== 0) {
-//             apiCall('get', '/internship/search/skills?skills=' + data["skillsRequired"].join(',') + '&id=' + this.props.match.params.id)
-//               .then(
-//                 async (recomm) => {
-//                   if (this.state.user._id === data.faculty._id) {
-//                     await this.setState({ owner: true });
-//                     apiCall('get', '/internship/applications/' + this.props.match.params.id, '')
-//                       .then((data) => {
-//                         console.log(data)
-//                         let arr = []
-//                         data.forEach((e) => {
-//                           let thing = { ...e.applicantId }
-//                           thing.a1 = e.answers[0]
-//                           thing.a2 = e.answers[1]
-//                           thing.name = thing.fname + ' ' + thing.lname
-//                           arr.push(thing)
-//                         })
-//                         this.setState({ downloaddata: arr })
-//                       }).catch(e => console.log(e))
-
-//                   }
-//                   if (data.applicants.findIndex(app => app._id === this.state.user._id) !== -1) {
-//                     await this.setState({ applied: true })
-//                   }
-//                   if (new Date(this.state.details.applyBy) > Date.now()) {
-//                     this.setState({ passed: true });
-//                   }
-//                   await this.setState({ details: data, recommlist: recomm, exists: true, start: false, ques2: `Are you avaiable for ${data.duration} months, starting immediately? If not, what is the time period you are avaiable for and the earliest date you can start this internhsip on?` });
-//                   await this.setState({ emails: this.getApplicantsEmail() });
-//                   console.log(this.state);
-//                 }).catch(
-//                   (e) => this.setState({ exist: false, start: false })
-//                 )
-//             return
-//           } else {
-//             await this.setState({ exists: false, start: false })
-//           }
-
-//         }
-
-//       ).catch(
-//         (e) => {
-//           this.setState({ exist: false, start: false })
-//         }
-//       )
-
-//   }
+  componentDidMount(){
+    console.log(this.props.match.params.id)
+    apiCall('get','/internship/details/'+this.props.match.params.id)
+    .then((d)=>{
+      this.setState({details:d,start:false,exists:true})
+    }).catch((e)=>{
+      console.log(e)
+      this.setState({exist:false})
+    }
+      )
+  }
 
   // For Applying in a Internship
 //   handleApply(e) {
@@ -94,15 +57,15 @@ class InternshipDetail extends Component {
                     <div className="internshipTitle">
                       <h1>{this.state.details.title}</h1>
                       <div className="floatingclass"><div>
-                        <div className="category">{this.state.details.category}</div>
-                        {this.state.details.faculty.email === this.props.currentUser.user.email && (
+                        {/* {this.state.details.faculty.email === this.props.currentUser.user.email && (
                           <span
                             className="deleteproj"
                             onClick={this.handleShow3}
                           >
                             <i className="fa fa-edit"></i>
                           </span>
-                        )}</div></div>
+                        )} */}
+                        </div></div>
                     </div>
                     <div className="provider">
                       <img
@@ -110,8 +73,8 @@ class InternshipDetail extends Component {
                         alt="pfp"
                         className="avatar-pro"
                       ></img>
-                      <Link className="author" to={"/profile/" + this.state.details.faculty.email.split('@')[0]}>
-                        {this.state.details.faculty.fname} {this.state.details.faculty.lname}
+                      <Link className="author" to={"/profile/" + this.state.details.faculty._id+'/'+this.state.details.faculty.name}>
+                        {this.state.details.faculty.name}
                       </Link>
                     </div>
                     <br></br>
@@ -169,43 +132,6 @@ class InternshipDetail extends Component {
 
                             </ExcelSheet>
                           </ExcelFile> */}
-                          <Modal show={this.state.show1} onHide={this.handleClose1} centered>
-                            <Modal.Header closeButton backdrop="static">
-                              <Modal.Title>Send Mail</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                              <div className="toField">
-                                <label>To</label>
-                                <Multiselect
-                                  options={this.state.emails}
-                                  selectedValues={this.state.emails}
-                                  displayValue="text"
-                                  onSearch={this.handleSkills}
-                                  ref={this.multiselectRef}
-                                />
-                              </div>
-                              <form className="ui form" onSubmit={this.onSendMail}>
-                                <div className="ui field">
-                                  <label>Subject</label>
-                                  <input type="text" required name="subject" onChange={this.handleChange}></input>
-                                </div>
-                                <div className="ui field">
-                                  <label>Text</label>
-                                  {/* <textarea required name="text" onChange={this.handleChange}></textarea> */}
-
-                                  <CKEditor
-                                    data={this.state.text}
-                                    onChange={this.onEditorChange} />
-
-                                </div>
-
-                                <div style={{ textAlign: 'center' }}>
-                                  <button className="ui button" >Send</button>
-                                </div>
-                                <p style={{ color: 'red' }}>{this.state.error}</p>
-                              </form>
-                            </Modal.Body>
-                          </Modal>
                         </div>
                       }
                     </h3>
@@ -218,7 +144,7 @@ class InternshipDetail extends Component {
                           </span>
                         )}
                     </span>
-                    {this.state.user.role === "Student" && (this.state.details.faculty._id !== this.state.user._id) &&
+                    {/* {this.state.user.role === "Student" && (this.state.details.faculty._id !== this.state.user._id) &&
                       <div>
                         {!this.state.applied && !this.state.passed &&
                           <div>
@@ -296,11 +222,11 @@ class InternshipDetail extends Component {
                         } */}
 
                       </div>
-                    }
+                    
                   </div>
                 </div>
               </div>
-              <div className="col-lg-4 col-12 recommendations">
+              {/* <div className="col-lg-4 col-12 recommendations">
                 <div className="card recomm">
                   <h3>Recommendations</h3>
                   <hr></hr>
@@ -312,20 +238,13 @@ class InternshipDetail extends Component {
 
                 </div>
 
-              </div>
+              </div> */}
             </div>
           </div>
-          <Modal size="lg" show={this.state.show3} onHide={this.handleClose3} backdrop="static">
-            <Modal.Header closeButton>
-              <Modal.Title>Edit internship Details</Modal.Title>
-            </Modal.Header>
-            <Modal.Body><Internshipform edited={this.edited} predata={this.state.details} editing={true} {...this.props}></Internshipform></Modal.Body>
-          </Modal>
-        </div >
       )
     } else if (exists === false) {
       return (
-        <NotFoundSVG />
+        <div>doesnt exist</div>
 
       )
     }
@@ -337,9 +256,8 @@ class InternshipDetail extends Component {
     const { exists, start } = this.state;
     return (
       <div>
-        <Navbar history={this.props.history} onPage="internshipDetails"></Navbar>
+        <Navbar ></Navbar>
         {this.contentDisplay(exists, start)}
-        <PageFooter />
       </div>
     );
   }

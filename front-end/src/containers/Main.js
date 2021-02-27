@@ -8,6 +8,7 @@ import Register from "./Landing/RegisterMain";
 import Bookmark from "../components/Bookmark";
 // import NotFound from '../images/NotFound'
 import Profile from '../components/Profile'
+import IntershipDetail from './Homepage/InternshipDetail'
 
 class Main extends React.Component {
   // async componentWillMount() {
@@ -51,6 +52,8 @@ class Main extends React.Component {
             render={(props) => <Homepage {...props} />}
           />
           <Route exact path="/login" render={(props) => <Login {...props} />} />
+          <Route exact path="/bookmark" render={(props) => <Bookmark {...props} />} />
+          <Route exact path="/internship/:id" render={props => <IntershipDetail  key={props.match.params.id} {...props} />} /> 
           <Route
             exact
             path="/bookmark"

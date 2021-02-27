@@ -14,6 +14,8 @@ import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import Button from "@material-ui/core/Button"
 import {Link} from 'react-router-dom'
+import HomeIcon from  "@material-ui/icons/Home";
+import BookmarkIcon from  "@material-ui/icons/Bookmark";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -181,8 +183,8 @@ export default function PrimarySearchAppBar() {
               inputProps={{ "aria-label": "search" }}
             />
           </div>
-          <Link className="nolink" to="home"> <Button color="inherit">Home</Button></Link>
-          <Link className="nolink" to="bookmark"><Button color="inherit">Bookmark</Button></Link>
+          <Link className="nolink" to="home"> <Button color="inherit" startIcon={<HomeIcon/>}>Home</Button></Link>
+          <Link className="nolink" to="bookmark"><Button color="inherit" startIcon={<BookmarkIcon/>}>Bookmark</Button></Link>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
