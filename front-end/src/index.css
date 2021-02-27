@@ -17,6 +17,9 @@ code {
   color:white;
   text-decoration: none;
 }
+.nolink:hover{
+  color:white;
+}
 .nopadmar *{
   padding: 0px;
   margin: 0px;
