@@ -50,6 +50,7 @@ class Main extends React.Component {
             render={(props) => <Homepage {...props} />}
           />
           <Route exact path="/login" render={(props) => <Login {...props} />} />
+          <Route exact path="/bookmark" render={(props) => <Bookmark {...props} />} />
           <Route
             exact
             path="/accounts"
@@ -60,7 +61,6 @@ class Main extends React.Component {
             path="/signup"
             render={(props) => <Signup {...props} />}
           />
-
           <Route path="*" render={(props) => <div>not found</div>} />
         </Switch>
       </div>
