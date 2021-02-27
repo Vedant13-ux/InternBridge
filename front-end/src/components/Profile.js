@@ -41,12 +41,15 @@ class Profile extends Component {
         };
         this.bio = React.createRef();
 
-        // Handle Edit
+        // Handle Bio
         this.handleEdit = e => {
             this.bio.current.focus();
             this.setState({ bioEditable: !this.state.bioEditable });
         }
-        // console.log('')
+        this.handleSaveBio = e => {
+            this.setState({ bioEditable: !this.state.bioEditable })
+        }
+
     }
     componentDidMount() {
         apiCall(
@@ -76,12 +79,12 @@ class Profile extends Component {
                             <img src={this.state.user.photo} alt="profilePic"></img>
                         </div>
                         <div className="left-icons">
-                            <Fab color="secondary" aria-label="add" className="body">
+                            <Fab color="primary" aria-label="add" className="body">
                                 <ThumbUpAltIcon />
                             </Fab>
 
                             <Fab
-                                color="secondary"
+                                color="primary"
                                 aria-label="add"
                                 style={{ marginLeft: "10px" }}
                                 className="uibtn"
@@ -104,9 +107,9 @@ class Profile extends Component {
                                     Bio
                                     <Fab
                                         size="small"
-                                        color="secondary"
-                                        aria-label="add"
+                                        color="primary"
                                         style={{ marginLeft: "5px" }}
+                                        aria-label="add"
                                         onClick={this.handleEdit}
                                         className="uibtn"
                                     >
@@ -120,6 +123,7 @@ class Profile extends Component {
                                             color="primary"
                                             size="small"
                                             startIcon={<SaveIcon />}
+                                            onClick={this.handleSaveBio()}
                                         >
                                             Save
                                      </Button>
@@ -161,7 +165,7 @@ class Profile extends Component {
                                     Experiences
                   <Fab
                                         size="small"
-                                        color="secondary"
+                                        color="primary"
                                         aria-label="add"
                                         style={{ marginLeft: "5px" }}
                                     >
@@ -199,7 +203,7 @@ class Profile extends Component {
                                     Contact Info
                   <Fab
                                         size="small"
-                                        color="secondary"
+                                        color="primary"
                                         aria-label="add"
                                         style={{ marginLeft: "5px" }}
                                     >
@@ -220,7 +224,7 @@ class Profile extends Component {
                         <hr></hr>
                     </div>
                 </div>
-            </div>
+            </div >
         );
     }
 }
