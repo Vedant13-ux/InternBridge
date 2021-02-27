@@ -67,7 +67,7 @@ class RegisterStudents extends React.Component {
             </Avatar>
             <h2 style={headerStyle}>Sign Up</h2>
             <Typography variant="caption" gutterBottom>
-              Please fill this form to create an account !
+              Please fill this form to create an account.
             </Typography>
           </Grid>
           <form onSubmit={this.handleSubmit}>
