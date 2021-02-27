@@ -37,14 +37,14 @@ class RegisterStudents extends React.Component {
     this.handleSubmit = (e) => {
       e.preventDefault();
       const { name, email, phoneNumber, password, year, role } = this.state;
-      const data = { name, email, phoneNumber, password, year, role }
+      const data = { name, email, phoneNumber, password, year, role };
       apiCallAuth('post', '/signup', data)
         .then(async (response) => {
           console.log(response)
-          await this.setState({ success: true })
+          await this.setState({ error: "", success: true })
         }).catch((err) => {
-          console.log(err);
-          return this.setState({ error: err.message })
+          console.log(err.response.data.error.message);
+          return this.setState({ error: err.response.data.error.message })
         });
     }
   }
