@@ -1,7 +1,6 @@
 import React from "react";
 import { Switch, Route, withRouter } from "react-router-dom";
 import Homepage from "../components/Homepage";
-import Landing from "../components/Landing";
 import Login from "../containers/Landing/Login";
 import Register from "./Landing/RegisterMain";
 import Bookmark from "../components/Bookmark";
@@ -54,7 +53,7 @@ class Main extends React.Component {
     return (
       <div>
         <Switch>
-          <Route exact path="/" render={(props) => <Landing {...props} />} />
+          <Route exact path="/" render={(props) => <LandingPage {...props} />} />
           <Route
             exact
             path="/home"
@@ -81,25 +80,6 @@ class Main extends React.Component {
             currentUser={currentUser}
             path="/bookmark"
             render={(props) => <Bookmark {...props} />}
-          />
-          <Route
-            exact
-            path="/internship/:id"
-            render={(props) => (
-              <IntershipDetail key={props.match.params.id} {...props} />
-            )}
-          />
-          <Route
-            exact
-            currentUser={currentUser}
-            path="/bookmark"
-            render={(props) => <Bookmark {...props} />}
-          />
-          <Route
-            exact
-            currentUser={currentUser}
-            path="/landing"
-            render={(props) => <LandingPage {...props} />}
           />
           <Route
             exact
