@@ -17,7 +17,7 @@ const Accounts = () => {
   // const paperStyle = { width: 320, padding: 20, margin: "20px auto" };
   const paperStyle = {
     width: 340,
-    margin: "20px auto",
+    margin: "40px auto",
   };
   function TabPanel(props) {
     const { children, value, index, ...other } = props;
