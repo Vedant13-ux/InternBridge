@@ -23,15 +23,19 @@ app.use(cors());
 require('./models/index');
 
 
+// Seed database
+// require('./seed')();
 
 // Routes
 const authRoutes = require('./routes/auth.js');
 const userRoutes = require('./routes/user');
+const internshipRoutes = require('./routes/internship')
 
 
 // Incuding Routes
 app.use('/api/auth', authRoutes);
-app.use('/api', userRoutes)
+app.use('/api/user', userRoutes);
+app.use('/api/internship', internshipRoutes)
 
 
 app.use((req, res, next) => {
