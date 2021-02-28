@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function PrimarySearchAppBar(props) {
-  const user = props.currentUser.user;
+  const user = props.user;
   console.log(user);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -219,7 +219,7 @@ function PrimarySearchAppBar(props) {
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.currentUser
+    user: state.user
   }
 }
 
