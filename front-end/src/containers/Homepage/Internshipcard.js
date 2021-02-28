@@ -47,7 +47,7 @@ export default function RecipeReviewCard(props) {
         avatar={
           <Avatar
             aria-label="recipe"
-            className={classes.avatar}s
+            className={classes.avatar} s
             src={props.data.faculty.photo}
           >
             R
@@ -69,15 +69,15 @@ export default function RecipeReviewCard(props) {
           {props.data.description.slice(0, 60) + "..."}
         </Typography>
         <div className="nopadmar">
-          <h5>Apply By</h5>
+          <span>Apply By</span>
           <Typography variant="body2" color="textSecondary" component="p">
             {new Date(props.data.applyBy).toDateString()}
           </Typography>
-          <h5>duration</h5>
+          <span>Duration</span>
           <Typography variant="body2" color="textSecondary" component="p">
             {props.data.duration}
           </Typography>
-          <h5>Skills</h5>
+          <span>Skills</span>
           <div id="tags-skill">
             {props.data.skillsRequired.map((skill) => {
               return (
