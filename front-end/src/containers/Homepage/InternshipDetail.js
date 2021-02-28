@@ -5,6 +5,7 @@ import {apiCall} from '../../api/api'
 import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 import HomeIcon from '@material-ui/icons/Home';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import Applybut from './applybut'
 
 class InternshipDetail extends Component {
   constructor(props) {
@@ -169,7 +170,9 @@ class InternshipDetail extends Component {
                         )}
                     </span>
                    
-
+                          <center>
+                            <Applybut></Applybut>
+                          </center>
                       </div>
                     
                   </div>
