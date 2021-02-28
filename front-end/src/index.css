@@ -145,7 +145,7 @@ padding: 10px;
   flex: 33%;
 }
 
-#internshipdetail .provider{
+.provider{
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -168,7 +168,7 @@ padding: 10px;
   border-radius: 5px;
   display:inline
 }
-#internshipdetail .author{
+ .author{
   margin-left: 10px;
   color:rgb(99, 99, 99);
   font-size: 20px;

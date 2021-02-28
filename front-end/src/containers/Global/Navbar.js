@@ -193,19 +193,17 @@ function PrimarySearchAppBar(props) {
           </div>
           <Link className="nolink" to="/home"> <Button color="inherit" startIcon={<HomeIcon />}>Home</Button></Link>
           <Link className="nolink" to="/bookmark"><Button color="inherit" startIcon={<BookmarkIcon />}>Bookmark</Button></Link>
-          <Link className="nolink" to="/bookmark">
-            <Button color="inherit" startIcon={<BookmarkIcon />}>
-              <div className="provider">
-                <img
-                  src={user.photo}
-                  alt="pfp"
-                  className="avatar-pro"
-                ></img>
-                <Link className="author" to={"/profile/" + user._id + '/' + user.name}>
-                  {user.name}
-                </Link>
-              </div>
-            </Button>
+          <Link className="nolink" to="/bookmark" style={{cssFloat:'right'}}>
+            <div className="provider">
+              <img
+                src={user.photo}
+                alt="pfp"
+                className="avatar-pro"
+              ></img>
+              <Link style={{ color: 'white', marginLeft: '3px' }} to={"/profile/" + user._id + '/' + user.name}>
+                {user.name}
+              </Link>
+            </div>
           </Link>
 
         </Toolbar>
