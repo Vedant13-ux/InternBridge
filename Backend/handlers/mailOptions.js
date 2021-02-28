@@ -2,7 +2,7 @@ function mailOptions(req, process) {
   return ({
     from: 'kjsceintern@gmail.com',
     to: req.body.email,
-    subject: 'KJSCE Intern - Verification',
+    subject: 'Intern Bridge - Verification',
     text: `
             Hello, Thanks for regstering on our site. Please Click on the link bellow to verify your Account.
             http://localhost:3000/verify-email/${req.body.emailToken}`,

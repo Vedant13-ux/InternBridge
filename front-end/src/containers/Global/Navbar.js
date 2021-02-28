@@ -193,7 +193,7 @@ function PrimarySearchAppBar(props) {
           </div>
           <Link className="nolink" to="/home"> <Button color="inherit" startIcon={<HomeIcon />}>Home</Button></Link>
           <Link className="nolink" to="/bookmark"><Button color="inherit" startIcon={<BookmarkIcon />}>Bookmark</Button></Link>
-          <Link className="nolink" to="/bookmark" style={{cssFloat:'right'}}>
+          <Link className="nolink" to="/bookmark" style={{ cssFloat: 'right' }}>
             <div className="provider">
               <img
                 src={user.photo}
@@ -205,6 +205,8 @@ function PrimarySearchAppBar(props) {
               </Link>
             </div>
           </Link>
+          <Link className="nolink" to="/login" style={{marginLeft:'40px'}}>Logout</Link>
+
 
         </Toolbar>
       </AppBar>
