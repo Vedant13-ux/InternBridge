@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { apiCall } from "../api/api";
 import ExperienceForm from "./ExperienceForm";
+import Achievementform from "./AchievementForm";
 import Navbar from "../containers/Global/Navbar";
 import Fab from "@material-ui/core/Fab";
 import StarIcon from "@material-ui/icons/Star";
@@ -31,6 +32,7 @@ class Profile extends Component {
       show1: false,
       show2: false,
       show3: false,
+      show4: false,
       lookingforjob: "",
       owner: true,
       bioEditable: false,
@@ -68,6 +70,11 @@ class Profile extends Component {
     this.handleClose3 = () => {
       this.setState({ show3: !this.state.show3 });
       //   this.bio.current.style.border = "4px solid black";
+    };
+
+    //handle achievements
+    this.handleClose4 = () => {
+      this.setState({ show4: !this.state.show4 });
     };
   }
   componentDidMount() {
@@ -125,8 +132,12 @@ class Profile extends Component {
           </div>
 
           <div className="container">
-            <div className="lookForJob">
-              <Typography variant="h5" component="h4">
+            <div className="lookForJob" style={{ marginBottom: "2rem" }}>
+              <Typography
+                variant="h5"
+                component="h4"
+                style={{ marginBottom: "1rem" }}
+              >
                 <div className="headings">
                   Bio
                   <Fab
@@ -195,6 +206,8 @@ class Profile extends Component {
                 onClose={this.handleClose2}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
+                fullWidth
+                maxWidth="md"
               >
                 <DialogTitle id="alert-dialog-title">
                   Add Experience
@@ -209,7 +222,7 @@ class Profile extends Component {
                 </DialogActions>
               </Dialog>
             </div>
-            <div className="experiences">
+            <div className="experiences" style={{ marginBottom: "2rem" }}>
               <Typography variant="h5" component="h4">
                 <div className="headings">
                   Experiences
@@ -217,7 +230,7 @@ class Profile extends Component {
                     size="small"
                     color="primary"
                     onClick={this.handleClose2}
-                    aria-label="add" 
+                    aria-label="add"
                     style={{ marginLeft: "5px" }}
                   >
                     <AddIcon />
@@ -228,7 +241,7 @@ class Profile extends Component {
                     return (
                       <div class="ui segment">
                         <div className="experience-ele">
-                          <h4>{e.title}</h4>
+                          <h4 style={{ margin: "0rem 0" }}>{e.title}</h4>
                           <sub>{e.type}</sub>
                           {this.props.owner && (
                             <span
@@ -239,7 +252,9 @@ class Profile extends Component {
                             </span>
                           )}
                           <p>
-                            <span style={{ display: "block" }}>
+                            <span
+                              style={{ display: "block", marginBottom: "5px" }}
+                            >
                               {e.company}
                             </span>
                             {new Date(e.startdate).toDateString() +
@@ -247,8 +262,8 @@ class Profile extends Component {
                               (e.enddate === null
                                 ? "Present"
                                 : new Date(e.enddate).toDateString())}
-                            <br></br>
-                            <h6>{e.description}</h6>
+
+                            <h5>{e.description}</h5>
                           </p>
                           {/* <hr className="short br-lighter"></hr> */}
                         </div>
@@ -264,7 +279,11 @@ class Profile extends Component {
 
             {/* certificates */}
 
-            <div className="panel" id="certificates">
+            <div
+              className="panel"
+              id="certificates"
+              style={{ marginBottom: "2rem" }}
+            >
               <div className="panel-heading">
                 <span className="panel-icon">
                   <i className="fa fa-pencil" />
@@ -341,12 +360,12 @@ class Profile extends Component {
                           >
                             See creditential
                           </a>
-                        </div>
-                        <div className="delIcon" style={{ float: "right" }}>
-                          <DeleteIcon
-                            color={"primary"}
-                            onClick={() => this.deleteCert(i)}
-                          />
+                          <div className="delIcon" style={{ float: "right" }}>
+                            <DeleteIcon
+                              color={"primary"}
+                              onClick={() => this.deleteCert(i)}
+                            />
+                          </div>
                         </div>
                       </p>
                     </div>
@@ -360,6 +379,8 @@ class Profile extends Component {
               onClose={this.handleClose3}
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
+              fullWidth
+              maxWidth="md"
             >
               <DialogTitle id="alert-dialog-title">Add Certificate</DialogTitle>
               <DialogContent>
@@ -429,7 +450,11 @@ class Profile extends Component {
 
             {/* achievements  */}
 
-            <div className="panel" id="achievements">
+            <div
+              className="panel"
+              id="achievements"
+              style={{ marginBottom: "2rem" }}
+            >
               <div className="panel-heading">
                 <span className="panel-icon">
                   <i className="fa fa-pencil" />
@@ -461,7 +486,7 @@ class Profile extends Component {
                     return (
                       <div class="ui segment">
                         <div className="experience-ele">
-                          <h4>{e.title}</h4>
+                          <h4 style={{ margin: "0rem 0rem" }}>{e.title}</h4>
                           {this.props.owner && (
                             <span
                               className="deleteproj"
@@ -470,15 +495,26 @@ class Profile extends Component {
                               <i className="fa fa-edit"></i>
                             </span>
                           )}
-                          <h5>Award/Prize : {e.reward}</h5>
+                          <div className="awards">
+                            {" "}
+                            <p style={{ margin: "5px 0" }}>
+                              Award/Prize : {e.reward}
+                            </p>
+                          </div>
+
                           <div>
                             Date : {new Date(e.date).toDateString()}
                             <br></br>
-                            <h6>{e.description}</h6>
+                            <h5>{e.description}</h5>
                           </div>
                           {e.link && (
                             <div>
-                              <a href={e.link} target="_blank" rel="noreferrer">
+                              <a
+                                href={e.link}
+                                target="_blank"
+                                rel="noreferrer"
+                                style={{ textDecoration: "none" }}
+                              >
                                 See achievement
                               </a>
                             </div>
@@ -492,67 +528,16 @@ class Profile extends Component {
             </div>
 
             <Dialog
-              open={this.state.show3}
-              onClose={this.handleClose3}
+              open={this.state.show4}
+              onClose={this.handleClose4}
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
+              fullWidth
+              maxWidth="md"
             >
-              <DialogTitle id="alert-dialog-title">Add Certificate</DialogTitle>
+              <DialogTitle id="alert-dialog-title">Add Achievement</DialogTitle>
               <DialogContent>
-                <form onSubmit={this.handleSubmit}>
-                  <div className="ui form">
-                    <div className="field">
-                      <label>Title</label>
-                      <input
-                        name="title"
-                        maxLength="30"
-                        required
-                        val={"fill here"}
-                        onChange={this.handleChange}
-                        type="text"
-                        placeholder="eg. Completed Course on Java"
-                      ></input>
-                    </div>
-                    <div className="field">
-                      <label>Provider</label>
-                      <input
-                        name="provider"
-                        maxLength="30"
-                        required
-                        val={"fill here"}
-                        onChange={this.handleChange}
-                        type="text"
-                        placeholder="eg. Udemy"
-                      ></input>
-                    </div>
-                    <div className="field">
-                      <label>Issued on</label>
-                      <input
-                        required
-                        type="Date"
-                        name="date"
-                        val={"fill here"}
-                        onChange={this.handleChange}
-                      ></input>
-                    </div>
-                    <div className="field">
-                      <label>Link</label>
-                      <input
-                        name="link"
-                        maxLength="100"
-                        required
-                        val={"fill here"}
-                        onChange={this.handleChange}
-                        type="text"
-                        placeholder="eg. https://www.udemy.com/certificate/UC-fb6...."
-                      ></input>
-                    </div>
-
-                    <div className="submit confirmdiv">
-                      <button className="medium ui button confirm">ADD</button>
-                    </div>
-                  </div>
-                </form>
+                <Achievementform />
               </DialogContent>
               <DialogActions>
                 <Button onClick={this.handlesublfj} color="primary">
@@ -566,22 +551,24 @@ class Profile extends Component {
               <Typography variant="h5" component="h4">
                 <div className="headings">
                   Contact Info
-                  <Fab
+                  {/* <Fab
                     size="small"
                     color="primary"
                     aria-label="add"
                     style={{ marginLeft: "5px" }}
                   >
-                    <AddIcon />
-                  </Fab>
+                    {/* <AddIcon /> */}
+                  {/* </Fab> */}
                 </div>
               </Typography>
               <div className="paper">
-                <div>
-                  <strong>Email - </strong> {this.state.user.email}
-                </div>
-                <div>
-                  <strong>Phone - </strong> {this.state.user.phoneNumber}
+                <div class="ui stacked segments">
+                  <div class="ui segment">
+                    <strong>Email - </strong> {this.state.user.email}
+                  </div>
+                  <div class="ui segment">
+                    <strong>Phone - </strong> {this.state.user.phoneNumber}
+                  </div>
                 </div>
               </div>
             </div>
