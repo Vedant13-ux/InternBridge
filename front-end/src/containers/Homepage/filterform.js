@@ -44,8 +44,8 @@ class FilterForm extends Component {
       if (this.state.external) type.push("External");
       let obj = {
         type: type,
-        min: this.state.value.min,
-        max: this.state.value.max,
+        min: this.state.value[0],
+        max: this.state.value[1],
         skills: skillArray,
         query: this.state.query,
       };
@@ -54,7 +54,7 @@ class FilterForm extends Component {
         .then((internships) => {
           console.log("sahi hua");
           console.log(internships);
-          return this.setState({ ...this.state, list: internships });
+          this.props.seti(internships)
         })
         .catch((e) => console.log(e));
     }
@@ -106,6 +106,7 @@ class FilterForm extends Component {
           <FormControlLabel
             control={
               <Checkbox
+              checked={this.state.home}
                 onChange={this.handleChangechb1}
                 name="checkedB"
                 color="primary"
@@ -116,6 +117,7 @@ class FilterForm extends Component {
           <FormControlLabel
             control={
               <Checkbox
+              checked={this.state.external}
                 onChange={this.handleChangecb2}
                 name="checkedB"
                 color="primary"

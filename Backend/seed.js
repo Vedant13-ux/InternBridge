@@ -3,8 +3,6 @@ const db = require('./models/index');
 
 async function seedDB() {
 
-    // data = {}
-    // for (let i = 0; i < 3; i++) {
     data = {
         name: "Vedant Nagani",
         dept: "IT",
@@ -21,9 +19,9 @@ async function seedDB() {
     // }
     // for (let i = 0; i < 3; i++) {
     //     data = {
-    //         faculty: "603a2117bf8c6c50f88e456d",
-    //         title: 'Machine Learning',
-    //         skillsRequired: ['Python', 'R', 'Pandas'],
+    //         faculty: "603ab8de4591042efd2b74c7",
+    //         title: 'django',
+    //         skillsRequired: ['Python', 'Django', 'Pandas'],
     //         duration: Math.floor(Math.random() * 13),
     //         applyBy: new Date('2021-12-30T22:58:32.786Z'),
     //         numberOpenings: Math.floor(Math.random() * 3),
