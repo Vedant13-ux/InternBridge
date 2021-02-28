@@ -21,8 +21,8 @@ class Homepage extends Component {
     this.changesf = (ne) => {
       this.setState({ searchfield: ne.target.value });
     };
-    this.setintern=(d)=>{
-      this.setState({internship:d})
+    this.setintern = (d) => {
+      this.setState({ internship: d })
     }
     this.searchclick = () => {
       if (this.state.searchfield === "") {
@@ -62,15 +62,15 @@ class Homepage extends Component {
           href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/icon.min.css"
         />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/dropdown.min.css"></link>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/input.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/form.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/site.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/button.min.css"></link>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/input.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/form.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/site.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/button.min.css"></link>
         <Navbar onch={this.changesf} dient={this.searchclick}></Navbar>
         <div className="homegrid">
           <div style={{ marginBottom: "10px" }}>
             <Filter seti={this.setintern}></Filter>
-            <InternshipCreate></InternshipCreate>
+            <InternshipCreate history={this.props.history}></InternshipCreate>
           </div>
           <div className="row">
             {this.state.internship.map((d, i) => {
