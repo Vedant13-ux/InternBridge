@@ -71,7 +71,7 @@ export default function CustomizedDialogs(props) {
 
   return (
     <div>
-      <Button>Apply</Button>
+      <Button onClick={handleClickOpen}>Apply</Button>
       <Dialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"

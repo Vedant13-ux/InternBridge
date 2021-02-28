@@ -89,66 +89,31 @@ class FilterForm extends Component {
   render() {
     return (
       <div className="filterForm">
-        <label className="labelFilter">By Skills</label>
-        <Multiselect
-          onSelect={this.changeskills}
-          onRemove={this.changeskills}
-          options={this.state.skills} // Options to display in the dropdown
-          // selectedValues={context.state.skills} // Preselected value to persist in dropdown
-          displayValue="text" // Property name to display in the dropdown options
-          onSearch={this.handleSkills}
-          ref={this.multiselectRef}
-        />
-
-        <div
-          style={{ padding: "15px", marginLeft: "25px", marginRight: "25px" }}
-        >
-          <FormControlLabel
-            control={
-              <Checkbox
-              checked={this.state.home}
-                onChange={this.handleChangechb1}
-                name="checkedB"
-                color="primary"
-              />
-            }
-            label="work from home"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-              checked={this.state.external}
-                onChange={this.handleChangecb2}
-                name="checkedB"
-                color="primary"
-              />
-            }
-            label="external"
-          />
-          <Typography id="range-slider" gutterBottom>
-            duration (in months)
-          </Typography>
-          <Slider
-            value={this.state.value}
-            onChange={(e, v) => this.setState({value:v})} //
-            valueLabelDisplay="auto"
-            min={0}
-            step={1}
-            max={12}
-            aria-labelledby="range-slider"
-          />
-        </div>
+        <form id="applyForm" className="ui form" onSubmit={this.handleApply}>
+            <div className="field">
+            <label>Why should you be hired for this role?</label><br></br>
+            <textarea
+                maxlength="200"
+                rows="3"
+                required
+                name="ans1"
+                // value={this.state.ans1}
+                // onChange={this.handleChange}
+            ></textarea>
+            </div>
+            <div className="field">
+            <label>Are you available for the internship period mention</label><br></br>
+            <textarea
+                maxlength="200"
+                rows="2"
+                required
+                name="ans2"
+                // value={this.state.ans2}
+                // onChange={this.handleChange}
+            ></textarea>
+            </div>
+        </form>
         <div className="button-holder">
-          <button
-            type="button"
-            className="btn btn-default"
-            onClick={() => {
-              this.reset();
-              this.props.onHide();
-            }}
-          >
-            Reset
-          </button>
           <button
             type="button"
             className="btn btn-default"
@@ -167,7 +132,7 @@ class FilterForm extends Component {
               }
             }}
           >
-            Apply Filters
+            Apply
           </button>
         </div>
         <p style={{ color: "red" }}>{this.state.error}</p>
