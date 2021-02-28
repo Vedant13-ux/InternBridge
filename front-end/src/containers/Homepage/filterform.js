@@ -28,11 +28,11 @@ class FilterForm extends Component {
     this.changeskills= (e) => {
       this.setState({ ...this.state, skills: e });
     }
-    this.handleChangechb1=(e)=>{
-      this.setState({ ...this.state, home: e.target.value });
+    this.handleChangechb1=(e,v)=>{
+      this.setState({ ...this.state, home: v });
     }
-    this.handleChangechb2=(e)=>{
-      this.setState({ ...this.state, external: e.target.value });
+    this.handleChangechb2=(e,v)=>{
+      this.setState({ ...this.state, external: v });
     }
     this.dofilter = ()=>{
       var skillArray = [];
@@ -118,7 +118,7 @@ class FilterForm extends Component {
             control={
               <Checkbox
               checked={this.state.external}
-                onChange={this.handleChangecb2}
+                onChange={this.handleChangechb2}
                 name="checkedB"
                 color="primary"
               />
