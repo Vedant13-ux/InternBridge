@@ -6,6 +6,7 @@ import {
   Typography,
   TextField,
   Button,
+  Link,
 } from "@material-ui/core";
 import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
 import FormControl from "@material-ui/core/FormControl";
@@ -29,14 +30,22 @@ class RegisterStudents extends React.Component {
       role: this.props.role,
       error: "",
       success: "",
-      disabled: false
+      disabled: false,
     };
     this.handleChange = (e) => {
       return this.setState({ [e.target.name]: e.target.value });
     };
     this.handleSubmit = (e) => {
       e.preventDefault();
-      const { name, email, phoneNumber, password, year, role, dept } = this.state;
+      const {
+        name,
+        email,
+        phoneNumber,
+        password,
+        year,
+        role,
+        dept,
+      } = this.state;
       const data = { name, email, phoneNumber, password, year, role, dept };
       apiCallAuth("post", "/signup", data)
         .then(async (response) => {
@@ -91,7 +100,7 @@ class RegisterStudents extends React.Component {
               onChange={this.handleChange}
               required
             />
-            {this.props.role === "Student" &&
+            {this.props.role === "Student" && (
               <TextField
                 fullWidth
                 disabled={this.state.disabled}
@@ -101,7 +110,7 @@ class RegisterStudents extends React.Component {
                 onChange={this.handleChange}
                 required
               />
-            }
+            )}
 
             <FormControl style={{ margin: "3px", minWidth: "120px" }}>
               <InputLabel htmlFor="grouped-select">Department</InputLabel>
@@ -119,10 +128,9 @@ class RegisterStudents extends React.Component {
                 <MenuItem value={"Mech"}>Mech</MenuItem>
                 <MenuItem value={"Etrx"}>Etrx</MenuItem>
                 <MenuItem value={"Other"}>Etrx</MenuItem>
-
               </Select>
             </FormControl>
-            {this.props.role === "Student" &&
+            {this.props.role === "Student" && (
               <FormControl style={{ margin: "3px", minWidth: "150px" }}>
                 <InputLabel htmlFor="grouped-select">Year</InputLabel>
                 <Select
@@ -133,14 +141,13 @@ class RegisterStudents extends React.Component {
                   required
                   name="year"
                 >
-
                   <MenuItem value={"FY"}>FY</MenuItem>
                   <MenuItem value={"SY"}>SY</MenuItem>
                   <MenuItem value={"TY"}>TY</MenuItem>
                   <MenuItem value={"LY"}>LY</MenuItem>
                 </Select>
               </FormControl>
-            }
+            )}
             <TextField
               disabled={this.state.disabled}
               name="password"
@@ -168,6 +175,9 @@ class RegisterStudents extends React.Component {
             >
               Sign up
             </Button>
+            <Typography>
+              Already have an account? <Link href="/login">Sign In</Link>
+            </Typography>
           </form>
           {this.state.error !== "" && (
             <Alert severity="error">{this.state.error}</Alert>
