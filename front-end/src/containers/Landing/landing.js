@@ -92,7 +92,7 @@ const LandingPage = () => {
                 <div class="col-lg-6 col-md-10 col-12 d-flex flex-column justify-content-center align-items-center">
                   <div class="hero-text">
                     <h1 class="text-white" data-aos="fade-up">
-                      Never miss an Internship Opportunty.
+                      Never miss an Internship Opportunity.
                     </h1>
 
                     <Link
