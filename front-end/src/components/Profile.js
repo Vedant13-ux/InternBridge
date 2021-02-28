@@ -217,7 +217,7 @@ class Profile extends Component {
                     size="small"
                     color="primary"
                     onClick={this.handleClose2}
-                    aria-label="add"
+                    aria-label="add" 
                     style={{ marginLeft: "5px" }}
                   >
                     <AddIcon />
@@ -603,7 +603,7 @@ class Profile extends Component {
                   <strong>Email - </strong> {this.state.user.email}
                 </div>
                 <div>
-                  <strong>Phone - </strong> {this.state.user.contactInfo}
+                  <strong>Phone - </strong> {this.state.user.phoneNumber}
                 </div>
               </div>
             </div>
