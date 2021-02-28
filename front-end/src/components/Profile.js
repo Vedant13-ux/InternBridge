@@ -260,28 +260,6 @@ class Profile extends Component {
                   )} */}
                 </div>
               </Typography>
-              <div style={{ padding: "20px" }}>
-                {this.state.user.experience && (
-                  <div>
-                    <Accordion>
-                      <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header"
-                      >
-                        <Typography>
-                          {this.state.user.experience.title}
-                        </Typography>
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <Typography>
-                          {this.state.user.experience.description}
-                        </Typography>
-                      </AccordionDetails>
-                    </Accordion>
-                  </div>
-                )}
-              </div>
             </div>
 
             {/* certificates */}
