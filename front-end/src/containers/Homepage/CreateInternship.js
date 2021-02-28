@@ -113,9 +113,9 @@ class Intershipform extends Component {
         .catch((err) => console.log(err));
     } else {
       apiCall("post", '/internship/create/internship', this.state)
-        .then((id) => {
+        .then((internship) => {
           console.log("Created");
-          return this.props.history.push("/internship/" + id);
+          return this.props.history.push("/internship/" + internship._id);
         })
         .catch((err) => console.log(err));
     }
