@@ -1,7 +1,7 @@
 import React from "react";
 import Login from "./Login";
 import { Link } from "react-router-dom";
-import { TextField ,Button } from '@material-ui/core'
+import { TextField, Button } from "@material-ui/core";
 
 const LandingPage = () => {
   return (
@@ -38,7 +38,7 @@ const LandingPage = () => {
           <nav class="navbar navbar-expand-lg">
             <div class="container">
               <a class="navbar-brand" href="index.html">
-                <i class="fa fa-line-chart"></i>
+                <i class="fa fa-line-chart"> </i>
                 InternBridge
               </a>
 
@@ -180,7 +180,12 @@ const LandingPage = () => {
                     Subscribe to our mail to always be updated with our latest
                     features
                   </p>
-                  <TextField id="standard-basic" color="primary" label="email" /><Button color="primary">Confirm</Button>
+                  <TextField
+                    id="standard-basic"
+                    color="primary"
+                    label="email"
+                  />
+                  <Button color="primary">Confirm</Button>
                 </div>
               </div>
             </div>

@@ -129,4 +129,26 @@ router.post('/create/internship', async (req, res, next) => {
     }
 });
 
+// Skill Suggestions
+router.get('/skillSuggestion/:skill', (req, res, next) => {
+    let query = req.params.skill.toLowerCase().split('');
+    if (query.length > 5) {
+        query.splice(5);
+    }
+    top = skillJSON;
+    query.forEach(char => {
+        top = top[char];
+    });
+    var top10 = top["top"];
+    var skillObj = {};
+    var skillArray = [];
+    top10.forEach(skill => {
+        skillObj["text"] = skill;
+        // skillObj["value"] = skill;
+        skillArray.push(skillObj);
+        skillObj = {};
+    });
+    res.send(skillArray);
+});
+
 module.exports = router

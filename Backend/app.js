@@ -24,7 +24,7 @@ require('./models/index');
 
 
 // Seed database
-// require('./seed')();
+require('./seed')();
 
 // Routes
 const authRoutes = require('./routes/auth.js');
