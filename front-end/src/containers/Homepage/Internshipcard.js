@@ -73,6 +73,10 @@ export default function RecipeReviewCard(props) {
           <Typography variant="body2" color="textSecondary" component="p">
             {new Date(props.data.applyBy).toDateString()}
           </Typography>
+          <h5>duration</h5>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {props.data.duration}
+          </Typography>
           <h5>Skills</h5>
           <div id="tags-skill">
             {props.data.skillsRequired.map((skill) => {

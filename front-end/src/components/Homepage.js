@@ -21,6 +21,9 @@ class Homepage extends Component {
     this.changesf = (ne) => {
       this.setState({ searchfield: ne.target.value });
     };
+    this.setintern=(d)=>{
+      this.setState({internship:d})
+    }
     this.searchclick = () => {
       if (this.state.searchfield === "") {
         apiCall("get", "/internship/getAll")
@@ -66,7 +69,7 @@ class Homepage extends Component {
         <Navbar onch={this.changesf} dient={this.searchclick}></Navbar>
         <div className="homegrid">
           <div style={{ marginBottom: "10px" }}>
-            <Filter></Filter>
+            <Filter seti={this.setintern}></Filter>
             <InternshipCreate></InternshipCreate>
           </div>
           <div className="row">

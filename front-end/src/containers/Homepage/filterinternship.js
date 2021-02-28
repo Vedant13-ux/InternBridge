@@ -56,7 +56,7 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-export default function CustomizedDialogs() {
+export default function CustomizedDialogs(props) {
   const [open, setOpen] = React.useState(false);
   const [valr,setvalr] = React.useState([2,4])
 
@@ -86,7 +86,7 @@ export default function CustomizedDialogs() {
           Filter Internship
         </DialogTitle>
         <DialogContent dividers>
-          <Filterform/>
+          <Filterform seti={props.seti} onHide={handleClose}/>
         </DialogContent>
 
       </Dialog>
