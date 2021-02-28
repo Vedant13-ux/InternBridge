@@ -13,9 +13,12 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import Button from "@material-ui/core/Button"
-import {Link} from 'react-router-dom'
-import HomeIcon from  "@material-ui/icons/Home";
-import BookmarkIcon from  "@material-ui/icons/Bookmark";
+import { Link } from 'react-router-dom'
+import HomeIcon from "@material-ui/icons/Home";
+import BookmarkIcon from "@material-ui/icons/Bookmark";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -81,7 +84,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PrimarySearchAppBar(props) {
+function PrimarySearchAppBar(props) {
+  const user = props.user;
+  console.log(user);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -105,6 +110,7 @@ export default function PrimarySearchAppBar(props) {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -185,8 +191,23 @@ export default function PrimarySearchAppBar(props) {
               inputProps={{ "aria-label": "search" }}
             />
           </div>
-          <Link className="nolink" to="/home"> <Button color="inherit" startIcon={<HomeIcon/>}>Home</Button></Link>
-          <Link className="nolink" to="/bookmark"><Button color="inherit" startIcon={<BookmarkIcon/>}>Bookmark</Button></Link>
+          <Link className="nolink" to="/home"> <Button color="inherit" startIcon={<HomeIcon />}>Home</Button></Link>
+          <Link className="nolink" to="/bookmark"><Button color="inherit" startIcon={<BookmarkIcon />}>Bookmark</Button></Link>
+          <Link className="nolink" to="/bookmark">
+            <Button color="inherit" startIcon={<BookmarkIcon />}>
+              <div className="provider">
+                <img
+                  src={user.photo}
+                  alt="pfp"
+                  className="avatar-pro"
+                ></img>
+                <Link className="author" to={"/profile/" + user._id + '/' + user.name}>
+                  {user.name}
+                </Link>
+              </div>
+            </Button>
+          </Link>
+
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
@@ -194,3 +215,12 @@ export default function PrimarySearchAppBar(props) {
     </div>
   );
 }
+
+
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  }
+}
+
+export default withRouter(connect(mapStateToProps, {})(PrimarySearchAppBar));
