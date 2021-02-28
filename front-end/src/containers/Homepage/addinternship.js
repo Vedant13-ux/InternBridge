@@ -56,9 +56,9 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-export default function CustomizedDialogs() {
+export default function CustomizedDialogs(props) {
   const [open, setOpen] = React.useState(false);
-  const [valr,setvalr] = React.useState(0)
+  const [valr, setvalr] = React.useState(0)
 
   const handleClickOpen = () => {
     console.log("open");
@@ -70,7 +70,7 @@ export default function CustomizedDialogs() {
 
   return (
     <div>
-       <IconButton aria-label="delete"  onClick={handleClickOpen}>
+      <IconButton aria-label="delete" onClick={handleClickOpen}>
         <AddIcon color="primary" />
       </IconButton>
       <Dialog
@@ -82,7 +82,7 @@ export default function CustomizedDialogs() {
           Add Internship
         </DialogTitle>
         <DialogContent dividers>
-          <Internshipform></Internshipform>
+          <Internshipform history={props.history}></Internshipform>
         </DialogContent>
       </Dialog>
     </div>
