@@ -8,6 +8,7 @@ import Bookmark from "../components/Bookmark";
 import Profile from "../components/Profile";
 import IntershipDetail from "./Homepage/InternshipDetail";
 import { connect } from "react-redux";
+import jwtDecode from 'jwt-decode'
 import {
   updateRefresh,
   logout,
@@ -21,34 +22,37 @@ import EmailVerificaton from '../components/EmailVerification'
 
 class Main extends React.Component {
   // async componentWillMount() {
-  //     if ((localStorage.jwtToken)) {
-  //         console.log('Token is there')
-  //         var email = '';
-  //         try {
-  //             email = await jwtDecode(localStorage.jwtToken)['email'].split('@')[0];
-  //             console.log(email);
-  //             await setAuthorizationHeader(localStorage.jwtToken);
-  //             this.props.updateRefresh(email);
+  //   if ((localStorage.jwtToken)) {
+  //     console.log('Token is there')
+  //     var id = '';
+  //     var name = ''
+  //     try {
+  //       id = await jwtDecode(localStorage.jwtToken)['_id'];
+  //       name = await jwtDecode(localStorage.jwtToken)['name'];
 
-  //         } catch (err) {
-  //             console.log(err);
-  //             await this.props.logout();
-  //             this.props.history.push('/');
+  //       console.log(name, id);
+  //       await setAuthorizationHeader(localStorage.jwtToken);
+  //       this.props.updateRefresh(id, name);
 
-  //         }
-  //     } else {
-  //         this.props.history.push('/');
+  //     } catch (err) {
+  //       console.log(err);
+  //       await this.props.logout();
+  //       this.props.history.push('/');
+
   //     }
-  //     if (!localStorage.isAuthenticated) {
-  //         setAuthorizationHeader(false);
-  //         this.props.history.push('/');
-  //     }
-  //     console.log("main mounted");
+  //   } else {
+  //     this.props.history.push('/');
+  //   }
+  //   if (!localStorage.isAuthenticated) {
+  //     setAuthorizationHeader(false);
+  //     this.props.history.push('/');
+  //   }
+  //   console.log("main mounted");
   // }
   render() {
     const currentUser = this.props.currentUser;
     // if (!currentUser.user._id && localStorage.getItem('isAuthenticated') !== 'false' && JSON.parse(localStorage.getItem('isAuthenticated')) !== null) {
-    //     return <div></div>
+    //   return <div></div>
     // }
 
     return (
@@ -61,7 +65,7 @@ class Main extends React.Component {
             currentUser={currentUser}
             render={(props) => <Homepage {...props} />}
           />
-         
+
           <Route
             exact
             currentUser={currentUser}
