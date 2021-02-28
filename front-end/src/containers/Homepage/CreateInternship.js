@@ -47,13 +47,13 @@ class Intershipform extends Component {
         description: "",
         perks: "",
         whoCanApply: "",
-        // faculty: {
-        //   _id: this.props.currentUser.user._id,
-        //   fname: this.props.currentUser.user.fname,
-        //   lname: this.props.currentUser.user.lname,
-        //   photo: this.props.currentUser.user.photo,
-        //   email: this.props.currentUser.user.email,
-        // },
+        faculty: {
+          _id: this.props.currentUser.user._id,
+          fname: this.props.currentUser.user.fname,
+          lname: this.props.currentUser.user.lname,
+          photo: this.props.currentUser.user.photo,
+          email: this.props.currentUser.user.email,
+        },
         skillData: [
           { text: "Python" },
           { text: "Node.Js" },
@@ -113,8 +113,7 @@ class Intershipform extends Component {
         })
         .catch((err) => console.log(err));
     } else {
-      this.props
-        .internshipCreate(this.state)
+      apiCall("post",'/internship/create/internship',this.state)
         .then((id) => {
           console.log("Created");
           return this.props.history.push("/internship/" + id);

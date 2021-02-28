@@ -22,12 +22,54 @@ class FilterForm extends Component {
         start: true,
         home: true,
         external: true,
-        value: {
-        min: 0,
-        max: 12,
-        },
+        value: [0,12],
         error: "",
     };
+    this.changeskills= (e) => {
+      this.setState({ ...this.state, skills: e });
+    }
+    this.handleChangechb1=(e)=>{
+      this.setState({ ...this.state, home: e.target.value });
+    }
+    this.handleChangechb2=(e)=>{
+      this.setState({ ...this.state, external: e.target.value });
+    }
+    this.dofilter = ()=>{
+      var skillArray = [];
+      this.state.skills.forEach((skill) => {
+        skillArray.push(skill["text"]);
+      });
+      let type = [];
+      if (this.state.home) type.push("Work from Home");
+      if (this.state.external) type.push("External");
+      let obj = {
+        type: type,
+        min: this.state.value.min,
+        max: this.state.value.max,
+        skills: skillArray,
+        query: this.state.query,
+      };
+      console.log("aya boi", obj);
+      apiCall("post", "/internship/search/filter", obj)
+        .then((internships) => {
+          console.log("sahi hua");
+          console.log(internships);
+          return this.setState({ ...this.state, list: internships });
+        })
+        .catch((e) => console.log(e));
+    }
+    this.reset=async () => {
+      await this.setState({
+        home: true,
+        external: true,
+        value:[0,12],
+        skills: [],
+      });
+      this.dofilter()
+    }
+    this.filter= () => {
+      this.dofilter()
+    }
     this.handleSkills = this.handleSkills.bind(this);
     this.multiselectRef = React.createRef();
   }
@@ -49,8 +91,8 @@ class FilterForm extends Component {
       <div className="filterForm">
         <label className="labelFilter">By Skills</label>
         <Multiselect
-          // onSelect={(e) => context.changeskills(e)}
-          // onRemove={(e) => context.changeskills(e)}
+          onSelect={this.changeskills}
+          onRemove={this.changeskills}
           options={this.state.skills} // Options to display in the dropdown
           // selectedValues={context.state.skills} // Preselected value to persist in dropdown
           displayValue="text" // Property name to display in the dropdown options
@@ -64,8 +106,7 @@ class FilterForm extends Component {
           <FormControlLabel
             control={
               <Checkbox
-                // checked={state.checkedB}
-                // onChange={handleChange}
+                onChange={this.handleChangechb1}
                 name="checkedB"
                 color="primary"
               />
@@ -75,8 +116,7 @@ class FilterForm extends Component {
           <FormControlLabel
             control={
               <Checkbox
-                // checked={state.checkedB}
-                // onChange={handleChange}
+                onChange={this.handleChangecb2}
                 name="checkedB"
                 color="primary"
               />
@@ -87,8 +127,8 @@ class FilterForm extends Component {
             duration (in months)
           </Typography>
           <Slider
-            // value={valr}
-            // onChange={(e, v) => setvalr(v)} //
+            value={this.state.value}
+            onChange={(e, v) => this.setState({value:v})} //
             valueLabelDisplay="auto"
             min={0}
             step={1}
@@ -101,7 +141,7 @@ class FilterForm extends Component {
             type="button"
             className="btn btn-default"
             onClick={() => {
-            //   context.reset();
+              this.reset();
               this.props.onHide();
             }}
           >
@@ -112,16 +152,15 @@ class FilterForm extends Component {
             className="btn btn-default"
             onClick={async (e) => {
               if (
-                // context.state.home === false &&
-                // context.state.external === false
-                true
+                this.state.home === false &&
+                this.state.external === false
               ) {
                 return await this.setState({
                   error: "Select atleast one type.",
                 });
               } else {
                 await this.setState({ error: "" });
-                // context.filter();
+                this.filter();
                 this.props.onHide();
               }
             }}
