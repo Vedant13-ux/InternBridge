@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models');
 const skillJSON = require('../data/skills.json');
-const mailer = require('../handlers/mailer');
 
 // Search Internships
 function escapeRegex(text) {
